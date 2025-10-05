@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Owners - BOOM</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;900&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --pure-black: #000000;
+            --dark-void: #0A0A0A;
+            --dark-surface: #111111;
+            --text-primary: #FFFFFF;
+            --text-fade: #666666;
+            --text-secondary: #999999;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--pure-black);
+            color: var(--text-primary);
+            font-weight: 200;
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            padding: 20px 50px;
+            background: rgba(0,0,0,0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
+        }
+
+        .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+            font-weight: 400;
+        }
+
+        .nav-cta {
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold);
+            color: var(--pure-black);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 150px 50px 100px;
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%);
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--gold);
+            color: var(--pure-black);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .hero-title {
+            font-size: clamp(60px, 12vw, 140px);
+            font-weight: 100;
+            line-height: 0.85;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .gold-accent {
+            color: var(--gold);
+            font-weight: 300;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            padding: 20px 60px;
+            background: var(--gold);
+            color: var(--pure-black);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.4s;
+        }
+
+        .hero-cta:hover {
+            transform: scaleX(1.05);
+        }
+
+        /* Benefits */
+        .benefits-section {
+            padding: 100px 50px;
+            background: var(--dark-void);
+        }
+
+        .benefits-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 100;
+            text-transform: uppercase;
+            margin-bottom: 80px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            padding: 40px 30px;
+            background: var(--pure-black);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            background: rgba(255, 215, 0, 0.02);
+        }
+
+        .benefit-card h3 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .benefit-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .benefit-highlight {
+            font-size: 12px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+
+        /* Numbers */
+        .numbers-section {
+            padding: 100px 50px;
+            background: var(--pure-black);
+        }
+
+        .numbers-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .numbers-grid {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            padding: 60px 0;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .number-item {
+            text-align: center;
+        }
+
+        .number-value {
+            display: block;
+            font-size: 56px;
+            font-weight: 200;
+            color: var(--gold);
+            font-family: 'Oswald', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .number-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-secondary);
+        }
+
+        /* Process */
+        .process-section {
+            padding: 100px 50px;
+            background: var(--dark-void);
+        }
+
+        .process-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            margin-top: 60px;
+        }
+
+        .process-step {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 40px;
+            padding: 40px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .step-number {
+            font-size: 48px;
+            font-weight: 200;
+            color: var(--gold);
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .step-content h3 {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .step-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 100px 50px;
+            text-align: center;
+            background: var(--pure-black);
+        }
+
+        .cta-title {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 100;
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .cta-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            padding: 20px 60px;
+            background: var(--gold);
+            color: var(--pure-black);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.4s;
+        }
+
+        .cta-primary:hover {
+            transform: scaleX(1.05);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 140px 20px 60px;
+            }
+
+            .benefits-section,
+            .numbers-section,
+            .process-section,
+            .cta-section {
+                padding: 60px 20px;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .numbers-grid {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .process-step {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Nav -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-circle"></div>
+                <span class="logo-text">BOOM</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="/" class="nav-link">← Back to Main Site</a>
+                <a href="https://wa.me/393313251961" class="nav-cta">WhatsApp</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">For Property Owners</div>
+            <h1 class="hero-title">
+                Tired of<br>
+                <span class="gold-accent">empty flats?</span>
+            </h1>
+            <p class="hero-subtitle">
+                We fill them. Fast. With vetted internationals. Zero hassle for you.
+            </p>
+            <a href="https://wa.me/393313251961?text=I%20want%20to%20list%20my%20property" class="hero-cta">List Your Property</a>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="benefits-section">
+        <div class="benefits-container">
+            <h2 class="section-title">Why work with us</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>Guaranteed Rent</h3>
+                    <p>We pay you whether the flat is occupied or not. Sleep easy. Zero vacancy risk.</p>
+                    <span class="benefit-highlight">100% Occupancy</span>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3>Zero Hassle</h3>
+                    <p>We handle everything. Tenants, maintenance, paperwork, emergencies. You just collect.</p>
+                    <span class="benefit-highlight">Full Management</span>
+                </div>
+                
+                <div class="benefit-card">
+                    <h3>Premium Tenants</h3>
+                    <p>International professionals. Pre-verified. Background checked. Guaranteed payments.</p>
+                    <span class="benefit-highlight">Quality Guaranteed</span>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>Fast Fill</h3>
+                    <p>Average 48 hours from listing to first tenant. No waiting months for someone decent.</p>
+                    <span class="benefit-highlight">48H Average</span>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>Transparent Fees</h3>
+                    <p>10% commission OR 1 month rent. That's it. No hidden costs. No surprises.</p>
+                    <span class="benefit-highlight">Simple Pricing</span>
+                </div>
+
+                <div class="benefit-card">
+                    <h3>Long Contracts</h3>
+                    <p>18-24 month average stay. No turnover headaches. Stable, reliable income.</p>
+                    <span class="benefit-highlight">Stability</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Numbers -->
+    <section class="numbers-section">
+        <div class="numbers-container">
+            <h2 class="section-title">By the numbers</h2>
+            
+            <div class="numbers-grid">
+                <div class="number-item">
+                    <span class="number-value">18-24</span>
+                    <span class="number-label">Month contracts</span>
+                </div>
+                <div class="number-item">
+                    <span class="number-value">10%</span>
+                    <span class="number-label">Commission only</span>
+                </div>
+                <div class="number-item">
+                    <span class="number-value">48H</span>
+                    <span class="number-label">To first tenant</span>
+                </div>
+                <div class="number-item">
+                    <span class="number-value">100%</span>
+                    <span class="number-label">Verified tenants</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process-section">
+        <div class="process-container">
+            <h2 class="section-title">How it works</h2>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>List Your Property</h3>
+                        <p>Send us details. We do professional photos, video tours, everything. Takes 1 day.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>We Find Tenants</h3>
+                        <p>Average 48 hours. We screen, verify, check backgrounds. Only quality tenants.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>You Approve</h3>
+                        <p>We send tenant profile. You say yes or no. You stay in control.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>We Manage Everything</h3>
+                        <p>Contracts, payments, maintenance, emergencies. You receive monthly payments. That's it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2 class="cta-title">
+            Ready to list?
+        </h2>
+        <p class="cta-subtitle">
+            Currently accepting premium properties in central Rome
+        </p>
+        <a href="https://wa.me/393313251961?text=I%20want%20to%20list%20my%20property" class="cta-primary">List Your Property</a>
+    </section>
+</body>
+</html>

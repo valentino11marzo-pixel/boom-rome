@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Apartments - BOOM</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;900&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --cyan: #00CED1;
+            --green: #00FF88;
+            --pure-black: #000000;
+            --dark-void: #0A0A0A;
+            --text-primary: #FFFFFF;
+            --text-fade: #666666;
+            --text-secondary: #999999;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--pure-black);
+            color: var(--text-primary);
+            font-weight: 200;
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            padding: 20px 50px;
+            background: rgba(0,0,0,0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
+        }
+
+        .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+            font-weight: 400;
+        }
+
+        .nav-link.active {
+            color: var(--gold);
+        }
+
+        .nav-cta {
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold);
+            color: var(--pure-black);
+        }
+
+        .hero {
+            padding: 150px 50px 80px;
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%);
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--gold);
+            color: var(--pure-black);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(50px, 10vw, 100px);
+            font-weight: 100;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
+        }
+
+        .filters-section {
+            padding: 40px 50px;
+            background: var(--dark-void);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: sticky;
+            top: 81px;
+            z-index: 90;
+        }
+
+        .filters-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .filter-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-fade);
+        }
+
+        .filter-select {
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            font-size: 13px;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .filter-reset {
+            padding: 12px 25px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-secondary);
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-reset:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .apartments-section {
+            padding: 80px 50px;
+        }
+
+        .apartments-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .results-count {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .results-count strong {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .apartments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .apartment-card {
+            background: var(--dark-void);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .apartment-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .apartment-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .apartment-content {
+            padding: 30px;
+        }
+
+        .apartment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .apartment-title {
+            font-size: 20px;
+            font-weight: 300;
+            margin-bottom: 5px;
+        }
+
+        .apartment-location {
+            font-size: 12px;
+            color: var(--text-fade);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .apartment-badge {
+            padding: 6px 12px;
+            background: var(--gold);
+            color: var(--pure-black);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .apartment-features {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .feature-icon {
+            font-size: 14px;
+        }
+
+        .apartment-amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .amenity-tag {
+            padding: 5px 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .apartment-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .apartment-price {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .price-amount {
+            font-size: 32px;
+            font-weight: 300;
+            color: var(--gold);
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: -1px;
+        }
+
+        .price-period {
+            font-size: 11px;
+            color: var(--text-fade);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .apartment-cta {
+            padding: 12px 30px;
+            background: var(--gold);
+            color: var(--pure-black);
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .apartment-cta:hover {
+            transform: scaleX(1.05);
+        }
+
+        .cant-find-cta {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 60px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .cant-find-title {
+            font-size: 32px;
+            font-weight: 300;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .cant-find-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .cant-find-btn {
+            padding: 20px 50px;
+            background: var(--gold);
+            color: var(--pure-black);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .cant-find-btn:hover {
+            transform: scaleX(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 20px 60px;
+            }
+
+            .filters-section {
+                padding: 20px;
+                top: 70px;
+            }
+
+            .filters-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .apartments-section {
+                padding: 60px 20px;
+            }
+
+            .apartments-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cant-find-cta {
+                padding: 40px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-circle"></div>
+                <span class="logo-text">BOOM</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="/apartments.html" class="nav-link active">Apartments</a>
+                <a href="/property-finding.html" class="nav-link">Property Finding</a>
+                <a href="/concierge.html" class="nav-link">Concierge</a>
+                <a href="/how-it-works.html" class="nav-link">How It Works</a>
+                <a href="/about.html" class="nav-link">About</a>
+                <a href="https://wa.me/393313251961" class="nav-cta">WhatsApp</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">Video Verified · 48h Move-in</div>
+            <h1 class="hero-title">Available Now</h1>
+            <p class="hero-subtitle">
+                All apartments are video-verified, available for immediate viewing, and ready for move-in within 48 hours of approval.
+            </p>
+        </div>
+    </section>
+
+    <section class="filters-section">
+        <div class="filters-container">
+            <div class="filter-group">
+                <label class="filter-label">Budget</label>
+                <select class="filter-select" id="budgetFilter">
+                    <option value="">Any budget</option>
+                    <option value="0-1000">Up to €1,000</option>
+                    <option value="1000-1500">€1,000 - €1,500</option>
+                    <option value="1500+">€1,500+</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Bedrooms</label>
+                <select class="filter-select" id="bedroomsFilter">
+                    <option value="">Any</option>
+                    <option value="1">1 Bedroom</option>
+                    <option value="2">2 Bedrooms</option>
+                </select>
+            </div>
+
+            <button class="filter-reset" onclick="resetFilters()">Reset All</button>
+        </div>
+    </section>
+
+    <section class="apartments-section">
+        <div class="apartments-container">
+            <div class="section-header">
+                <h2 class="results-count">Showing <strong>5</strong> available apartments</h2>
+            </div>
+
+            <div class="apartments-grid">
+                <!-- LEVICO -->
+                <div class="apartment-card" onclick="window.location.href='/apartment-levico.html'">
+                    <img src="https://i.imgur.com/Ne0ROPe.jpeg" alt="Levico Apartment" class="apartment-image">
+                    <div class="apartment-content">
+                        <div class="apartment-header">
+                            <div>
+                                <h3 class="apartment-title">Levico</h3>
+                                <p class="apartment-location">Trieste District</p>
+                            </div>
+                            <span class="apartment-badge">48H Move-in</span>
+                        </div>
+
+                        <div class="apartment-features">
+                            <div class="feature">
+                                <span class="feature-icon">🛏️</span>
+                                <span>2 Bedrooms</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">📏</span>
+                                <span>75m²</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">🏢</span>
+                                <span>3rd Floor</span>
+                            </div>
+                        </div>
+
+                        <div class="apartment-amenities">
+                            <span class="amenity-tag">WiFi</span>
+                            <span class="amenity-tag">A/C</span>
+                            <span class="amenity-tag">Elevator</span>
+                            <span class="amenity-tag">Balcony</span>
+                        </div>
+
+                        <div class="apartment-footer">
+                            <div class="apartment-price">
+                                <span class="price-amount">€1,200</span>
+                                <span class="price-period">per month</span>
+                            </div>
+                            <button class="apartment-cta">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ANGELICO -->
+                <div class="apartment-card" onclick="window.location.href='/apartment-angelico.html'">
+                    <img src="https://i.imgur.com/SFPTZxk.jpeg" alt="Angelico Apartment" class="apartment-image">
+                    <div class="apartment-content">
+                        <div class="apartment-header">
+                            <div>
+                                <h3 class="apartment-title">Angelico</h3>
+                                <p class="apartment-location">Vatican Area</p>
+                            </div>
+                            <span class="apartment-badge">48H Move-in</span>
+                        </div>
+
+                        <div class="apartment-features">
+                            <div class="feature">
+                                <span class="feature-icon">🛏️</span>
+                                <span>1 Bedroom</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">📏</span>
+                                <span>55m²</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">🏢</span>
+                                <span>2nd Floor</span>
+                            </div>
+                        </div>
+
+                        <div class="apartment-amenities">
+                            <span class="amenity-tag">WiFi</span>
+                            <span class="amenity-tag">Kitchen</span>
+                            <span class="amenity-tag">Washing Machine</span>
+                        </div>
+
+                        <div class="apartment-footer">
+                            <div class="apartment-price">
+                                <span class="price-amount">€950</span>
+                                <span class="price-period">per month</span>
+                            </div>
+                            <button class="apartment-cta">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIPETTA -->
+                <div class="apartment-card" onclick="window.location.href='/apartment-ripetta.html'">
+                    <img src="https://i.imgur.com/MiArtvN.jpeg" alt="Ripetta Apartment" class="apartment-image">
+                    <div class="apartment-content">
+                        <div class="apartment-header">
+                            <div>
+                                <h3 class="apartment-title">Ripetta</h3>
+                                <p class="apartment-location">Centro Storico</p>
+                            </div>
+                            <span class="apartment-badge">48H Move-in</span>
+                        </div>
+
+                        <div class="apartment-features">
+                            <div class="feature">
+                                <span class="feature-icon">🛏️</span>
+                                <span>2 Bedrooms</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">📏</span>
+                                <span>80m²</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">🏢</span>
+                                <span>4th Floor</span>
+                            </div>
+                        </div>
+
+                        <div class="apartment-amenities">
+                            <span class="amenity-tag">WiFi</span>
+                            <span class="amenity-tag">A/C</span>
+                            <span class="amenity-tag">Elevator</span>
+                            <span class="amenity-tag">Historic Building</span>
+                        </div>
+
+                        <div class="apartment-footer">
+                            <div class="apartment-price">
+                                <span class="price-amount">€1,400</span>
+                                <span class="price-period">per month</span>
+                            </div>
+                            <button class="apartment-cta">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PIGNETO -->
+                <div class="apartment-card" onclick="window.location.href='/apartment-pigneto.html'">
+                    <img src="https://i.imgur.com/8acfklK.jpeg" alt="Pigneto Apartment" class="apartment-image">
+                    <div class="apartment-content">
+                        <div class="apartment-header">
+                            <div>
+                                <h3 class="apartment-title">Pigneto Bohemian</h3>
+                                <p class="apartment-location">Pigneto</p>
+                            </div>
+                            <span class="apartment-badge">48H Move-in</span>
+                        </div>
+
+                        <div class="apartment-features">
+                            <div class="feature">
+                                <span class="feature-icon">🛏️</span>
+                                <span>2 Bedrooms</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">📏</span>
+                                <span>80m²</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">🏢</span>
+                                <span>2nd Floor</span>
+                            </div>
+                        </div>
+
+                        <div class="apartment-amenities">
+                            <span class="amenity-tag">WiFi</span>
+                            <span class="amenity-tag">Terrace</span>
+                            <span class="amenity-tag">Balcony</span>
+                            <span class="amenity-tag">All Utilities</span>
+                        </div>
+
+                        <div class="apartment-footer">
+                            <div class="apartment-price">
+                                <span class="price-amount">€1,700</span>
+                                <span class="price-period">per month</span>
+                            </div>
+                            <button class="apartment-cta">View Details</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIA PIEMONTE -->
+                <div class="apartment-card" onclick="window.location.href='/apartment-piemonte.html'">
+                    <img src="https://i.imgur.com/9zmJz1P.jpeg" alt="Via Piemonte Apartment" class="apartment-image">
+                    <div class="apartment-content">
+                        <div class="apartment-header">
+                            <div>
+                                <h3 class="apartment-title">Via Piemonte</h3>
+                                <p class="apartment-location">Barberini</p>
+                            </div>
+                            <span class="apartment-badge">48H Move-in</span>
+                        </div>
+
+                        <div class="apartment-features">
+                            <div class="feature">
+                                <span class="feature-icon">🛏️</span>
+                                <span>2 Bedrooms</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">📏</span>
+                                <span>85m²</span>
+                            </div>
+                            <div class="feature">
+                                <span class="feature-icon">🏢</span>
+                                <span>5th Floor</span>
+                            </div>
+                        </div>
+
+                        <div class="apartment-amenities">
+                            <span class="amenity-tag">WiFi</span>
+                            <span class="amenity-tag">A/C</span>
+                            <span class="amenity-tag">Dishwasher</span>
+                            <span class="amenity-tag">Premium</span>
+                        </div>
+
+                        <div class="apartment-footer">
+                            <div class="apartment-price">
+                                <span class="price-amount">€1,500</span>
+                                <span class="price-period">per month</span>
+                            </div>
+                            <button class="apartment-cta">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cant-find-cta">
+                <h2 class="cant-find-title">Can't Find What You Need?</h2>
+                <p class="cant-find-text">
+                    Let us hunt for your perfect apartment. Fixed €350 fee. Money-back guarantee.
+                </p>
+                <a href="/pfs-form.html" class="cant-find-btn">Start Property Finding</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function resetFilters() {
+            document.getElementById('budgetFilter').value = '';
+            document.getElementById('bedroomsFilter').value = '';
+        }
+
+        document.querySelectorAll('.filter-select').forEach(select => {
+            select.addEventListener('change', function() {
+                console.log('Filters changed');
+            });
+        });
+    </script>
+</body>
+</html>

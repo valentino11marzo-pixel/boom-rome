@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOM – Terms of Service</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;900&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --cyan: #00CED1;
+            --green: #00FF88;
+            --red: #FF3B3B;
+            --pure-black: #000000;
+            --dark-surface: #111111;
+            --text-primary: #FFFFFF;
+            --text-secondary: #999999;
+            --text-fade: #666666;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--pure-black);
+            color: var(--text-primary);
+            font-weight: 200;
+            line-height: 1.8;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            padding: 30px 50px;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            opacity: 0.9;
+        }
+
+        .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        /* Content */
+        .terms-container {
+            max-width: 900px;
+            margin: 120px auto 80px;
+            padding: 0 50px;
+        }
+
+        .terms-header {
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 200;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        .last-updated {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .terms-toc {
+            background: var(--dark-surface);
+            padding: 30px;
+            margin-bottom: 60px;
+            border-left: 3px solid var(--gold);
+        }
+
+        .toc-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .toc-list {
+            list-style: none;
+        }
+
+        .toc-list li {
+            padding: 8px 0;
+        }
+
+        .toc-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .toc-list a:hover {
+            color: var(--gold);
+        }
+
+        .terms-section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            margin-top: 30px;
+        }
+
+        p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .highlight-box {
+            background: rgba(255, 215, 0, 0.05);
+            border-left: 3px solid var(--gold);
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .contact-section {
+            background: var(--dark-surface);
+            padding: 40px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px;
+            }
+
+            .terms-container {
+                padding: 0 20px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .terms-toc {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/index.html" class="logo">
+                <div class="logo-circle"></div>
+                <span class="logo-text">BOOM</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="terms-container">
+        <!-- Header -->
+        <div class="terms-header">
+            <h1>Terms of Service</h1>
+            <p class="last-updated">Last Updated: January 1, 2025 | Effective Date: January 1, 2025</p>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="terms-toc">
+            <h3 class="toc-title">Table of Contents</h3>
+            <ul class="toc-list">
+                <li><a href="#agreement">1. Agreement to Terms</a></li>
+                <li><a href="#services">2. Our Services</a></li>
+                <li><a href="#eligibility">3. Eligibility</a></li>
+                <li><a href="#account">4. Account Registration</a></li>
+                <li><a href="#rental">5. Rental Process</a></li>
+                <li><a href="#payments">6. Payments and Fees</a></li>
+                <li><a href="#responsibilities">7. User Responsibilities</a></li>
+                <li><a href="#property">8. Property Listings</a></li>
+                <li><a href="#liability">9. Limitation of Liability</a></li>
+                <li><a href="#termination">10. Termination</a></li>
+                <li><a href="#governing">11. Governing Law</a></li>
+                <li><a href="#contact">12. Contact Information</a></li>
+            </ul>
+        </div>
+
+        <!-- Terms Sections -->
+        <section class="terms-section" id="agreement">
+            <h2>1. Agreement to Terms</h2>
+            <p>
+                By accessing or using BOOM's services ("Service"), operated by <strong>Egidi Immobiliare S.r.l.</strong> 
+                (P.IVA 17322991005), you agree to be bound by these Terms of Service ("Terms"). 
+                If you disagree with any part of these terms, you may not access the Service.
+            </p>
+            <p>
+                These Terms apply to all users of the Service, including tenants, property owners, 
+                and visitors to our platform.
+            </p>
+        </section>
+
+        <section class="terms-section" id="services">
+            <h2>2. Our Services</h2>
+            <p>BOOM provides the following services:</p>
+            <ul>
+                <li><strong>Rental Platform:</strong> Connection between tenants and verified properties in Rome</li>
+                <li><strong>Property Management:</strong> Full management services for property owners</li>
+                <li><strong>Property Finding Service (PFS):</strong> Custom property search for €350</li>
+                <li><strong>Concierge Services:</strong> Additional support services for tenants</li>
+                <li><strong>Document Management:</strong> Digital contract signing and document storage</li>
+            </ul>
+            
+            <div class="highlight-box">
+                <strong>48-Hour Guarantee:</strong> We guarantee apartment placement within 48 hours of approved application. 
+                If we fail to deliver, your BOOM fee is fully refunded.
+            </div>
+        </section>
+
+        <section class="terms-section" id="eligibility">
+            <h2>3. Eligibility</h2>
+            <p>To use our Service, you must:</p>
+            <ul>
+                <li>Be at least 18 years old</li>
+                <li>Have the legal capacity to enter into binding contracts</li>
+                <li>Provide accurate, current, and complete information</li>
+                <li>Have valid identification (passport or EU ID card)</li>
+                <li>Demonstrate financial capability to pay rent</li>
+            </ul>
+        </section>
+
+        <section class="terms-section" id="account">
+            <h2>4. Account Registration</h2>
+            <p>
+                To access certain features, you must create an account. You are responsible for:
+            </p>
+            <ul>
+                <li>Maintaining the confidentiality of your account credentials</li>
+                <li>All activities that occur under your account</li>
+                <li>Notifying us immediately of any unauthorized use</li>
+                <li>Providing accurate and truthful information</li>
+            </ul>
+            <p>
+                We reserve the right to suspend or terminate accounts that violate these Terms 
+                or engage in fraudulent activity.
+            </p>
+        </section>
+
+        <section class="terms-section" id="rental">
+            <h2>5. Rental Process</h2>
+            
+            <h3>5.1 Application</h3>
+            <p>
+                By submitting a rental application, you authorize BOOM to verify your identity, 
+                employment, and financial information. Application approval is at our sole discretion.
+            </p>
+
+            <h3>5.2 Lease Agreement</h3>
+            <p>
+                The rental relationship is governed by a separate Lease Agreement between you and the property owner. 
+                BOOM facilitates but is not a party to this agreement unless explicitly stated.
+            </p>
+
+            <h3>5.3 Property Condition</h3>
+            <p>
+                All properties are presented through verified video tours. By renting, you acknowledge 
+                that you have reviewed these materials and accept the property condition.
+            </p>
+        </section>
+
+        <section class="terms-section" id="payments">
+            <h2>6. Payments and Fees</h2>
+            
+            <h3>6.1 BOOM Fee</h3>
+            <p>
+                The BOOM fee equals one month's rent for standard rentals or €350 for Property Finding Service. 
+                This fee is non-refundable except as specified in our 48-hour guarantee.
+            </p>
+
+            <h3>6.2 Security Deposit</h3>
+            <p>
+                Security deposits (typically 2 months' rent) are held according to Italian law and returned 
+                within 14 days of lease termination, minus any legitimate deductions for damages.
+            </p>
+
+            <h3>6.3 Payment Methods</h3>
+            <p>
+                We accept bank transfers and credit/debit cards via Stripe. All payments are processed securely. 
+                You authorize us to charge your selected payment method for all fees.
+            </p>
+
+            <h3>6.4 Late Payments</h3>
+            <p>
+                Rent is due on the 1st of each month. Late payments may incur penalties as specified 
+                in your Lease Agreement. Repeated late payments may result in lease termination.
+            </p>
+        </section>
+
+        <section class="terms-section" id="responsibilities">
+            <h2>7. User Responsibilities</h2>
+            <p>As a user of our Service, you agree to:</p>
+            <ul>
+                <li>Provide accurate information in all communications</li>
+                <li>Respect property and neighbors</li>
+                <li>Pay rent and fees on time</li>
+                <li>Report maintenance issues promptly</li>
+                <li>Comply with all applicable laws and regulations</li>
+                <li>Not use the Service for any unlawful purpose</li>
+                <li>Not sublease without written permission</li>
+            </ul>
+        </section>
+
+        <section class="terms-section" id="property">
+            <h2>8. Property Listings (For Owners)</h2>
+            
+            <h3>8.1 Listing Requirements</h3>
+            <p>Property owners must:</p>
+            <ul>
+                <li>Have legal authority to rent the property</li>
+                <li>Provide accurate property information</li>
+                <li>Maintain property in habitable condition</li>
+                <li>Comply with all applicable laws and regulations</li>
+            </ul>
+
+            <h3>8.2 Commission</h3>
+            <p>
+                BOOM charges a 10% monthly management fee for full-service management or 
+                one month's rent for placement-only service.
+            </p>
+        </section>
+
+        <section class="terms-section" id="liability">
+            <h2>9. Limitation of Liability</h2>
+            <p>
+                To the maximum extent permitted by law, BOOM and its affiliates shall not be liable for:
+            </p>
+            <ul>
+                <li>Indirect, incidental, special, consequential, or punitive damages</li>
+                <li>Loss of profits, data, use, goodwill, or other intangible losses</li>
+                <li>Damages exceeding the fees paid to BOOM in the past twelve months</li>
+            </ul>
+            <p>
+                BOOM acts as an intermediary and is not responsible for disputes between tenants and owners, 
+                except for services directly provided by BOOM.
+            </p>
+        </section>
+
+        <section class="terms-section" id="termination">
+            <h2>10. Termination</h2>
+            <p>
+                We may terminate or suspend your account immediately, without prior notice, for:
+            </p>
+            <ul>
+                <li>Breach of these Terms</li>
+                <li>Fraudulent or illegal activity</li>
+                <li>Providing false information</li>
+                <li>Non-payment of fees</li>
+                <li>Behavior harmful to other users or BOOM's reputation</li>
+            </ul>
+        </section>
+
+        <section class="terms-section" id="governing">
+            <h2>11. Governing Law</h2>
+            <p>
+                These Terms are governed by the laws of Italy. Any disputes shall be resolved 
+                in the courts of Rome, Italy. EU consumer protection laws apply where applicable.
+            </p>
+            <p>
+                We commit to attempting resolution through good faith negotiation before legal proceedings.
+            </p>
+        </section>
+
+        <section class="terms-section" id="changes">
+            <h2>12. Changes to Terms</h2>
+            <p>
+                We reserve the right to modify these Terms at any time. We will notify users of any 
+                material changes via email or platform notification. Continued use after changes 
+                constitutes acceptance of new Terms.
+            </p>
+        </section>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <h3 class="contact-title">Questions About These Terms?</h3>
+            <div class="contact-info">
+                Email: <a href="mailto:legal@boom.rent">legal@boom.rent</a>
+            </div>
+            <div class="contact-info">
+                WhatsApp: <a href="https://wa.me/393313251961">+39 331 325 1961</a>
+            </div>
+            <div class="contact-info">
+                Address: Via dei Coronari 181, 00186 Rome, Italy
+            </div>
+            <div class="contact-info" style="margin-top: 20px;">
+                <strong>Egidi Immobiliare S.r.l.</strong><br>
+                P.IVA: 17322991005 | REA: RM-1547892
+            </div>
+        </div>
+    </div>
+</body>
+</html>

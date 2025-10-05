@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOM – Privacy Policy</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;900&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --cyan: #00CED1;
+            --green: #00FF88;
+            --red: #FF3B3B;
+            --pure-black: #000000;
+            --dark-surface: #111111;
+            --text-primary: #FFFFFF;
+            --text-secondary: #999999;
+            --text-fade: #666666;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--pure-black);
+            color: var(--text-primary);
+            font-weight: 200;
+            line-height: 1.8;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            padding: 30px 50px;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            opacity: 0.9;
+        }
+
+        .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        /* Content */
+        .privacy-container {
+            max-width: 900px;
+            margin: 120px auto 80px;
+            padding: 0 50px;
+        }
+
+        .privacy-header {
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: clamp(36px, 6vw, 56px);
+            font-weight: 200;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        .last-updated {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .gdpr-notice {
+            background: rgba(255, 215, 0, 0.05);
+            border-left: 3px solid var(--gold);
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+
+        .gdpr-notice h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        .gdpr-notice p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .privacy-section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            margin-top: 30px;
+        }
+
+        p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .data-table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+        }
+
+        .data-table th, .data-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .data-table th {
+            background: var(--dark-surface);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .data-table td {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .rights-box {
+            background: var(--dark-surface);
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .rights-box h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .contact-section {
+            background: var(--dark-surface);
+            padding: 40px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .contact-info a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px;
+            }
+
+            .privacy-container {
+                padding: 0 20px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .data-table {
+                font-size: 12px;
+            }
+
+            .data-table th, .data-table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/index.html" class="logo">
+                <div class="logo-circle"></div>
+                <span class="logo-text">BOOM</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="privacy-container">
+        <!-- Header -->
+        <div class="privacy-header">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last Updated: January 1, 2025 | GDPR Compliant</p>
+        </div>
+
+        <!-- GDPR Notice -->
+        <div class="gdpr-notice">
+            <h3>🇪🇺 GDPR Compliance</h3>
+            <p>
+                This Privacy Policy complies with the General Data Protection Regulation (GDPR) (EU) 2016/679. 
+                We are committed to protecting your personal data and respecting your privacy rights.
+            </p>
+        </div>
+
+        <!-- Sections -->
+        <section class="privacy-section">
+            <h2>1. Data Controller</h2>
+            <p>
+                <strong>Egidi Immobiliare S.r.l.</strong><br>
+                Via dei Coronari 181, 00186 Rome, Italy<br>
+                P.IVA: 17322991005<br>
+                Email: privacy@boom.rent<br>
+                Phone: +39 331 325 1961
+            </p>
+            <p>
+                For any privacy-related inquiries, contact our Data Protection Officer at privacy@boom.rent.
+            </p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>2. What Data We Collect</h2>
+            
+            <h3>2.1 Information You Provide</h3>
+            <ul>
+                <li><strong>Identity Data:</strong> Name, surname, date of birth, nationality</li>
+                <li><strong>Contact Data:</strong> Email, phone number, WhatsApp number, address</li>
+                <li><strong>Financial Data:</strong> Bank account details, payment card details, income verification</li>
+                <li><strong>Identity Documents:</strong> Passport/ID copy, codice fiscale, residence permit</li>
+                <li><strong>Employment Data:</strong> Employer information, employment contracts, salary information</li>
+                <li><strong>Preferences:</strong> Property preferences, communication preferences</li>
+            </ul>
+
+            <h3>2.2 Information We Collect Automatically</h3>
+            <ul>
+                <li><strong>Technical Data:</strong> IP address, browser type, device information</li>
+                <li><strong>Usage Data:</strong> Pages visited, time spent, click patterns</li>
+                <li><strong>Location Data:</strong> Approximate location based on IP address</li>
+                <li><strong>Cookie Data:</strong> See our Cookie Policy section</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>3. Legal Basis for Processing</h2>
+            
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Purpose</th>
+                        <th>Legal Basis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Processing rental applications</td>
+                        <td>Contract performance</td>
+                    </tr>
+                    <tr>
+                        <td>Identity verification</td>
+                        <td>Legal obligation & legitimate interest</td>
+                    </tr>
+                    <tr>
+                        <td>Payment processing</td>
+                        <td>Contract performance</td>
+                    </tr>
+                    <tr>
+                        <td>Marketing communications</td>
+                        <td>Consent</td>
+                    </tr>
+                    <tr>
+                        <td>Customer support</td>
+                        <td>Legitimate interest</td>
+                    </tr>
+                    <tr>
+                        <td>Legal compliance</td>
+                        <td>Legal obligation</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="privacy-section">
+            <h2>4. How We Use Your Data</h2>
+            <p>We use your personal data to:</p>
+            <ul>
+                <li>Process and manage rental applications</li>
+                <li>Verify your identity and financial capability</li>
+                <li>Execute and manage rental contracts</li>
+                <li>Process payments and deposits</li>
+                <li>Provide customer support and maintenance services</li>
+                <li>Send service-related communications</li>
+                <li>Comply with legal obligations (anti-money laundering, tax reporting)</li>
+                <li>Improve our services through analytics</li>
+                <li>Send marketing communications (with your consent)</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>5. Data Sharing</h2>
+            <p>We may share your data with:</p>
+            <ul>
+                <li><strong>Property Owners:</strong> To facilitate rental agreements</li>
+                <li><strong>Payment Processors:</strong> Stripe for payment processing</li>
+                <li><strong>Service Providers:</strong> IT services, maintenance contractors, cleaning services</li>
+                <li><strong>Legal Authorities:</strong> When required by law</li>
+                <li><strong>Professional Advisors:</strong> Lawyers, accountants, auditors</li>
+            </ul>
+            <p>
+                We <strong>never</strong> sell your personal data to third parties. All data sharing is governed 
+                by data processing agreements ensuring GDPR compliance.
+            </p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>6. International Transfers</h2>
+            <p>
+                Your data is primarily stored within the European Economic Area (EEA). 
+                When we transfer data outside the EEA (e.g., to service providers), we ensure:
+            </p>
+            <ul>
+                <li>The country has an adequacy decision from the European Commission, or</li>
+                <li>We use Standard Contractual Clauses approved by the European Commission, or</li>
+                <li>The recipient is certified under an approved framework</li>
+            </ul>
+        </section>
+
+        <section class="privacy-section">
+            <h2>7. Data Retention</h2>
+            <p>We retain your data for:</p>
+            <ul>
+                <li><strong>Active tenants:</strong> Duration of tenancy plus 10 years (tax law requirement)</li>
+                <li><strong>Rental applications (not accepted):</strong> 6 months</li>
+                <li><strong>Marketing contacts:</strong> Until consent withdrawn</li>
+                <li><strong>Support communications:</strong> 2 years</li>
+                <li><strong>Financial records:</strong> 10 years (legal requirement)</li>
+            </ul>
+        </section>
+
+        <!-- Rights Box -->
+        <div class="rights-box">
+            <h3>Your Data Protection Rights</h3>
+            <p>Under GDPR, you have the following rights:</p>
+            <ul>
+                <li><strong>Right to Access:</strong> Request copies of your personal data</li>
+                <li><strong>Right to Rectification:</strong> Request correction of inaccurate data</li>
+                <li><strong>Right to Erasure:</strong> Request deletion of your data ("right to be forgotten")</li>
+                <li><strong>Right to Restrict Processing:</strong> Request limitation of data use</li>
+                <li><strong>Right to Data Portability:</strong> Receive your data in machine-readable format</li>
+                <li><strong>Right to Object:</strong> Object to certain types of processing</li>
+                <li><strong>Right to Withdraw Consent:</strong> Withdraw consent at any time</li>
+            </ul>
+            <p style="margin-top: 20px;">
+                To exercise any of these rights, email <strong>privacy@boom.rent</strong> with your request. 
+                We will respond within 30 days.
+            </p>
+        </div>
+
+        <section class="privacy-section">
+            <h2>8. Data Security</h2>
+            <p>We protect your data through:</p>
+            <ul>
+                <li>SSL encryption for all data transmissions</li>
+                <li>Encrypted storage of sensitive data</li>
+                <li>Regular security audits and updates</li>
+                <li>Access controls and authentication requirements</li>
+                <li>Employee training on data protection</li>
+                <li>Incident response procedures</li>
+            </ul>
+            <p>
+                While we implement industry-standard security measures, no system is 100% secure. 
+                We encourage you to protect your account credentials and report any suspicious activity.
+            </p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>9. Cookies</h2>
+            <p>We use cookies to:</p>
+            <ul>
+                <li><strong>Essential Cookies:</strong> Enable core functionality</li>
+                <li><strong>Analytics Cookies:</strong> Understand usage patterns (with consent)</li>
+                <li><strong>Marketing Cookies:</strong> Personalize marketing (with consent)</li>
+            </ul>
+            <p>
+                You can control cookies through your browser settings. Disabling essential cookies 
+                may impact site functionality.
+            </p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>10. Children's Privacy</h2>
+            <p>
+                Our services are not intended for individuals under 18 years of age. 
+                We do not knowingly collect data from minors. If we become aware of such collection, 
+                we will delete the data immediately.
+            </p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>11. Changes to This Policy</h2>
+            <p>
+                We may update this Privacy Policy periodically. We will notify you of significant changes 
+                via email or platform notification. The "Last Updated" date reflects the most recent revision.
+            </p>
+        </section>
+
+        <section class="privacy-section">
+            <h2>12. Complaints</h2>
+            <p>
+                If you're unsatisfied with our handling of your personal data, you have the right to lodge 
+                a complaint with the Italian Data Protection Authority (Garante per la protezione dei dati personali):
+            </p>
+            <p>
+                Website: www.garanteprivacy.it<br>
+                Email: garante@gpdp.it<br>
+                Phone: +39 06 69677 1
+            </p>
+        </section>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <h3 class="contact-title">Privacy Questions?</h3>
+            <div class="contact-info">
+                Data Protection Officer: <a href="mailto:privacy@boom.rent">privacy@boom.rent</a>
+            </div>
+            <div class="contact-info">
+                General Support: <a href="https://wa.me/393313251961">+39 331 325 1961</a>
+            </div>
+            <div class="contact-info">
+                Response Time: Within 48 hours
+            </div>
+            <div class="contact-info" style="margin-top: 20px;">
+                <strong>Your privacy matters to us.</strong><br>
+                We handle your data with care and respect.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

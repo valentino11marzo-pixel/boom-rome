@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOM – Get Your Rome Apartment in Days, Not Weeks</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;900&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --cyan: #00CED1;
+            --green: #00FF88;
+            --red: #FF3B3B;
+            --purple: #9D4EDD;
+            --orange: #FF6B35;
+            --pure-black: #000000;
+            --dark-void: #0A0A0A;
+            --dark-surface: #111111;
+            --text-primary: #FFFFFF;
+            --text-fade: #666666;
+            --text-secondary: #999999;
+        }
+
+        ::selection {
+            background: var(--gold);
+            color: var(--pure-black);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--pure-black);
+            color: var(--text-primary);
+            font-weight: 200;
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Cursor - Desktop only */
+        @media (hover: hover) {
+            .cursor {
+                position: fixed;
+                width: 20px;
+                height: 20px;
+                border: 1px solid var(--gold);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                transition: transform 0.1s ease;
+                mix-blend-mode: difference;
+            }
+
+            .cursor-follower {
+                position: fixed;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: var(--gold);
+                opacity: 0.1;
+                pointer-events: none;
+                z-index: 9998;
+                transition: transform 0.3s ease;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            padding: 30px 50px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0) 100%);
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            background: rgba(0,0,0,0.98);
+            padding: 20px 50px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: glow 3s infinite;
+            opacity: 0.9;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
+        }
+
+        .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+            position: relative;
+            font-weight: 400;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold);
+            color: var(--pure-black);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 50px;
+            position: relative;
+        }
+
+        .hero-bg-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: min(50vw, 800px);
+            font-weight: 200;
+            letter-spacing: -0.05em;
+            color: var(--dark-void);
+            z-index: 0;
+            user-select: none;
+            line-height: 0.8;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        .hero-content {
+            z-index: 1;
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 40px;
+            padding: 10px 20px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .live-indicator {
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .badge-text {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: clamp(60px, 12vw, 180px);
+            font-weight: 100;
+            line-height: 0.85;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .gold-accent {
+            color: var(--gold);
+            font-weight: 300;
+        }
+
+        .hero-meta {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-fade);
+        }
+
+        .meta-value {
+            color: var(--gold);
+            font-weight: 400;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            padding: 20px 60px;
+            background: var(--gold);
+            color: var(--pure-black);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.4s;
+            border: none;
+            display: inline-block;
+        }
+
+        .cta-primary:hover {
+            transform: scaleX(1.05);
+            letter-spacing: 4px;
+        }
+
+        .cta-ghost {
+            padding: 18px 58px;
+            background: transparent;
+            border: 1px solid var(--text-fade);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.4s;
+            display: inline-block;
+        }
+
+        .cta-ghost:hover {
+            border-color: var(--gold);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        /* Problems Section */
+        .problems-section {
+            padding: 100px 50px;
+            background: var(--dark-void);
+            position: relative;
+        }
+
+        .problems-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .problems-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--red);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .problems-title {
+            font-size: clamp(40px, 8vw, 100px);
+            font-weight: 100;
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .text-gradient-red {
+            background: linear-gradient(135deg, var(--red), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .problems-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .problems-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .problem-card {
+            padding: 40px 30px;
+            border-radius: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .problem-card:hover::before {
+            opacity: 1;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .card-red {
+            background: linear-gradient(135deg, rgba(255, 59, 59, 0.2), rgba(255, 59, 59, 0.1));
+            border: 1px solid var(--red);
+        }
+
+        .card-purple {
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(157, 78, 221, 0.1));
+            border: 1px solid var(--purple);
+        }
+
+        .card-orange {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 107, 53, 0.1));
+            border: 1px solid var(--orange);
+        }
+
+        .card-cyan {
+            background: linear-gradient(135deg, rgba(0, 206, 209, 0.2), rgba(0, 206, 209, 0.1));
+            border: 1px solid var(--cyan);
+        }
+
+        .card-green {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.2), rgba(0, 255, 136, 0.1));
+            border: 1px solid var(--green);
+        }
+
+        .card-yellow {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+            border: 1px solid var(--gold);
+        }
+
+        .problem-emoji {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .problem-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .problem-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* Apartments Preview */
+        .apartments-section {
+            padding: 100px 50px;
+            background: var(--pure-black);
+        }
+
+        .apartments-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .apartments-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .apartments-title {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 200;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--green), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .apartments-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+
+        .apartments-modern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .apartment-modern-card {
+            background: var(--dark-surface);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .apartment-modern-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .apartment-image-placeholder {
+            height: 200px;
+            background: linear-gradient(135deg, var(--green), var(--cyan));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .apartment-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 5px 15px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 20px;
+        }
+
+        .apartment-emoji {
+            font-size: 64px;
+            opacity: 0.5;
+        }
+
+        .apartment-info {
+            padding: 30px;
+        }
+
+        .apartment-price-tag {
+            display: flex;
+            align-items: baseline;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .price-amount {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .price-period {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .apartment-name {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .apartment-features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .apartment-features span {
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+
+        .apartment-link {
+            color: var(--cyan);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .apartment-link:hover {
+            color: var(--green);
+            letter-spacing: 2px;
+        }
+
+        .apartments-cta {
+            text-align: center;
+        }
+
+        .btn-gradient {
+            display: inline-block;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, var(--green), var(--cyan));
+            color: var(--pure-black);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 100px;
+            transition: all 0.3s;
+        }
+
+        .btn-gradient:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.3);
+        }
+
+        /* PFS Snippet */
+        .pfs-snippet {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.02), transparent);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .pfs-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-icon {
+            font-size: 16px;
+        }
+
+        .brutal-headline {
+            font-size: clamp(40px, 8vw, 120px);
+            font-weight: 100;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .pfs-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 80px;
+            margin-top: 80px;
+            align-items: start;
+        }
+
+        .pfs-price {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .pfs-price .currency {
+            font-size: 24px;
+            color: var(--gold);
+        }
+
+        .pfs-price .amount {
+            font-size: 96px;
+            font-weight: 100;
+            font-family: 'Oswald', sans-serif;
+            color: var(--gold);
+            letter-spacing: -4px;
+        }
+
+        .pfs-price .period {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-fade);
+        }
+
+        .pfs-features h3 {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-fade);
+            margin-bottom: 20px;
+        }
+
+        .pfs-features ul {
+            list-style: none;
+        }
+
+        .pfs-features li {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 16px;
+            font-weight: 300;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .pfs-features li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        .pfs-cta-group {
+            margin-top: 50px;
+        }
+
+        .pfs-note {
+            font-size: 11px;
+            color: var(--text-fade);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 20px;
+        }
+
+        .pfs-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            background: var(--text-fade);
+            padding: 2px;
+            align-self: start;
+        }
+
+        .pfs-stat {
+            background: var(--pure-black);
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 42px;
+            font-weight: 100;
+            color: var(--gold);
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: -2px;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-fade);
+            margin-top: 10px;
+        }
+
+        /* Concierge Snippet */
+        .concierge-snippet {
+            padding: 100px 50px;
+            background: var(--dark-void);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .concierge-snippet::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.03) 0%, transparent 70%);
+        }
+
+        .concierge-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .concierge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 80px 0;
+        }
+
+        .concierge-card {
+            background: var(--pure-black);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 40px 35px;
+            transition: all 0.3s;
+            position: relative;
+            border-radius: 10px;
+        }
+
+        .concierge-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.2);
+            background: rgba(255, 215, 0, 0.02);
+        }
+
+        .concierge-icon {
+            font-size: 40px;
+            color: var(--gold);
+            margin-bottom: 25px;
+        }
+
+        .concierge-card h3 {
+            font-size: 20px;
+            font-weight: 300;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+        }
+
+        .concierge-card p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .concierge-price {
+            font-size: 24px;
+            color: var(--gold);
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: -1px;
+        }
+
+        .concierge-cta {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .concierge-note {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-fade);
+            margin-bottom: 30px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 50px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+            max-width: 1400px;
+            margin: 0 auto 60px;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 48px;
+            font-weight: 300;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            font-size: 12px;
+            color: var(--text-fade);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .footer-links h4 {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-fade);
+            text-decoration: none;
+            font-size: 12px;
+            display: block;
+            padding: 5px 0;
+            transition: color 0.3s;
+            font-weight: 300;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-fade);
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 0 20px;
+            }
+
+            h1 {
+                font-size: 50px;
+            }
+
+            .hero-meta {
+                gap: 20px;
+            }
+
+            .hero-cta-group {
+                flex-direction: column;
+            }
+
+            .cta-primary, .cta-ghost {
+                width: 100%;
+                text-align: center;
+            }
+
+            .problems-section,
+            .apartments-section {
+                padding: 80px 20px;
+            }
+
+            .pfs-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .pfs-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .pfs-price .amount {
+                font-size: 72px;
+            }
+
+            .concierge-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .brutal-headline {
+                font-size: 36px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-circle"></div>
+                <span class="logo-text">BOOM</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="/apartments.html" class="nav-link">Apartments</a>
+                <a href="/property-finding.html" class="nav-link">Property Finding</a>
+                <a href="/concierge.html" class="nav-link">Concierge</a>
+                <a href="/how-it-works.html" class="nav-link">How It Works</a>
+                <a href="/about.html" class="nav-link">About</a>
+                <a href="https://wa.me/393313251961" class="nav-cta">WhatsApp</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-bg-text">48</div>
+        
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="live-indicator"></span>
+                <span class="badge-text">Live in Rome · 4 Ready</span>
+            </div>
+            
+            <h1 class="reveal">
+                Get your Rome<br>
+                apartment in <span class="gold-accent">days</span>,<br>
+                not weeks
+            </h1>
+            
+            <div class="hero-meta reveal">
+                <div class="meta-item">
+                    Response: <span class="meta-value">2min</span>
+                </div>
+                <div class="meta-item">
+                    Success: <span class="meta-value">98%</span>
+                </div>
+                <div class="meta-item">
+                    BS Fees: <span class="meta-value">€0</span>
+                </div>
+                <div class="meta-item">
+                    Languages: <span class="meta-value">EN/IT</span>
+                </div>
+            </div>
+            
+            <div class="hero-cta-group reveal">
+                <a href="/apartments.html" class="cta-primary">See Apartments</a>
+                <a href="/how-it-works.html" class="cta-ghost">How it Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems -->
+    <section class="problems-section">
+        <div class="problems-container">
+            <div class="problems-header">
+                <span class="section-tag">THE UGLY TRUTH</span>
+                <h2 class="problems-title reveal">
+                    Rome rentals are a<br>
+                    <span class="text-gradient-red">fucking nightmare</span>
+                </h2>
+                <p class="problems-subtitle">We know. We lived it. Now we fixed it.</p>
+            </div>
+            
+            <div class="problems-cards">
+                <div class="problem-card card-red reveal">
+                    <span class="problem-emoji">😤</span>
+                    <h3>45 Days Average</h3>
+                    <p>While you burn money on hotels and see 30 shitty flats</p>
+                </div>
+                
+                <div class="problem-card card-purple reveal">
+                    <span class="problem-emoji">🤑</span>
+                    <h3>€8000 Upfront</h3>
+                    <p>3 months deposit + 3 months advance + fake fees = bankruptcy</p>
+                </div>
+                
+                <div class="problem-card card-orange reveal">
+                    <span class="problem-emoji">📸</span>
+                    <h3>Catfish Photos</h3>
+                    <p>That "sunny terrace" is a 1m² balcony facing a dumpster</p>
+                </div>
+                
+                <div class="problem-card card-cyan reveal">
+                    <span class="problem-emoji">👻</span>
+                    <h3>Ghost Agents</h3>
+                    <p>They vanish after signing. Good luck when shit breaks</p>
+                </div>
+                
+                <div class="problem-card card-green reveal">
+                    <span class="problem-emoji">🤷</span>
+                    <h3>"No Speak English"</h3>
+                    <p>Suddenly forget English when you have problems</p>
+                </div>
+                
+                <div class="problem-card card-yellow reveal">
+                    <span class="problem-emoji">💸</span>
+                    <h3>Deposit Hostage</h3>
+                    <p>Kiss goodbye to 3 months deposit. They'll invent damages</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apartments Preview -->
+    <section class="apartments-section">
+        <div class="apartments-container">
+            <div class="apartments-header">
+                <span class="section-tag" style="background: var(--green);">AVAILABLE NOW</span>
+                <h2 class="apartments-title">
+                    Move in <span class="gradient-text">this week</span>
+                </h2>
+                <p class="apartments-subtitle">All verified. All real. All ready.</p>
+            </div>
+            
+            <div class="apartments-modern-grid">
+                <!-- Via Levico - Trieste/Coppedè -->
+                <a href="/apartment-trieste.html" class="apartment-modern-card reveal">
+                    <div class="apartment-image-placeholder" style="background: linear-gradient(135deg, var(--green), var(--cyan));">
+                        <span class="apartment-badge">Video Tour</span>
+                        <span class="apartment-emoji">🏡</span>
+                    </div>
+                    <div class="apartment-info">
+                        <div class="apartment-price-tag">
+                            <span class="price-amount">€1,200</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <h3 class="apartment-name">Villa Ada Studio</h3>
+                        <div class="apartment-features">
+                            <span>40m²</span>
+                            <span>1 bed</span>
+                            <span>Ground Floor</span>
+                        </div>
+                        <span class="apartment-link">View Details →</span>
+                    </div>
+                </a>
+                
+                <!-- Via Ascoli Piceno - Pigneto -->
+                <a href="/apartment-pigneto.html" class="apartment-modern-card reveal">
+                    <div class="apartment-image-placeholder" style="background: linear-gradient(135deg, var(--purple), var(--pink));">
+                        <span class="apartment-badge">Bohemian</span>
+                        <span class="apartment-emoji">🎨</span>
+                    </div>
+                    <div class="apartment-info">
+                        <div class="apartment-price-tag">
+                            <span class="price-amount">€1,700</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <h3 class="apartment-name">Pigneto Terrace</h3>
+                        <div class="apartment-features">
+                            <span>80m²</span>
+                            <span>2 bed</span>
+                            <span>Balcony</span>
+                        </div>
+                        <span class="apartment-link">View Details →</span>
+                    </div>
+                </a>
+                
+                <!-- Via dei Coronari - Piazza Navona -->
+                <a href="/apartment-navona.html" class="apartment-modern-card reveal">
+                    <div class="apartment-image-placeholder" style="background: linear-gradient(135deg, var(--gold), var(--orange));">
+                        <span class="apartment-badge">Historic Center</span>
+                        <span class="apartment-emoji">🏛️</span>
+                    </div>
+                    <div class="apartment-info">
+                        <div class="apartment-price-tag">
+                            <span class="price-amount">€2,000</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <h3 class="apartment-name">Coronari Classic</h3>
+                        <div class="apartment-features">
+                            <span>70m²</span>
+                            <span>1 bed</span>
+                            <span>Elevator</span>
+                        </div>
+                        <span class="apartment-link">View Details →</span>
+                    </div>
+                </a>
+                
+                <!-- Passeggiata di Ripetta - Piazza del Popolo -->
+                <a href="/apartment-popolo.html" class="apartment-modern-card reveal">
+                    <div class="apartment-image-placeholder" style="background: linear-gradient(135deg, var(--cyan), var(--purple));">
+                        <span class="apartment-badge">Premium</span>
+                        <span class="apartment-emoji">✨</span>
+                    </div>
+                    <div class="apartment-info">
+                        <div class="apartment-price-tag">
+                            <span class="price-amount">€2,300</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <h3 class="apartment-name">Popolo Elegance</h3>
+                        <div class="apartment-features">
+                            <span>100m²</span>
+                            <span>1 bed</span>
+                            <span>Terrace</span>
+                        </div>
+                        <span class="apartment-link">View Details →</span>
+                    </div>
+                </a>
+            </div>
+            
+            <div class="apartments-cta">
+                <a href="/apartments.html" class="btn-gradient">View All Apartments</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Finding Service Snippet -->
+    <section class="pfs-snippet">
+        <div class="pfs-container">
+            <div class="section-label">
+                <span class="section-icon">🔍</span>
+                PROPERTY FINDING SERVICE
+            </div>
+            <h2 class="brutal-headline reveal">
+                Can't find what<br>
+                you're looking for?<br>
+                <span class="gold-accent">We'll hunt it down.</span>
+            </h2>
+            
+            <div class="pfs-grid">
+                <div class="pfs-main reveal">
+                    <div class="pfs-price">
+                        <span class="currency">€</span>
+                        <span class="amount">350</span>
+                        <span class="period">fixed fee</span>
+                    </div>
+                    
+                    <div class="pfs-features">
+                        <h3>What You Get</h3>
+                        <ul>
+                            <li>Custom search based on your exact requirements</li>
+                            <li>Access to off-market properties</li>
+                            <li>5 curated options within 24 hours</li>
+                            <li>Video tours of all properties</li>
+                            <li>Negotiation on your behalf</li>
+                            <li>Full BOOM support and guarantees</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="pfs-cta-group">
+                        <a href="/property-finding.html" class="cta-primary">Learn More</a>
+                        <p class="pfs-note">Success rate: 98% find their perfect home</p>
+                    </div>
+                </div>
+                
+                <div class="pfs-stats reveal">
+                    <div class="pfs-stat">
+                        <div class="stat-number">24H</div>
+                        <div class="stat-label">To Find Options</div>
+                    </div>
+                    <div class="pfs-stat">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Curated Properties</div>
+                    </div>
+                    <div class="pfs-stat">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                    <div class="pfs-stat">
+                        <div class="stat-number">€0</div>
+                        <div class="stat-label">If We Fail</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Concierge Snippet -->
+    <section class="concierge-snippet">
+        <div class="concierge-container">
+            <div class="section-label">
+                <span class="section-icon">🎯</span>
+                CONCIERGE SERVICES
+            </div>
+            <h2 class="brutal-headline reveal">
+                Life doesn't stop<br>
+                at the apartment.<br>
+                <span class="gold-accent">We handle everything.</span>
+            </h2>
+            
+            <div class="concierge-grid">
+                <div class="concierge-card reveal">
+                    <div class="concierge-icon">🏠</div>
+                    <h3>Weekly Cleaning</h3>
+                    <p>Professional service. Same cleaner every week. €15/hour.</p>
+                    <div class="concierge-price">€60/month</div>
+                </div>
+                
+                <div class="concierge-card reveal">
+                    <div class="concierge-icon">✈️</div>
+                    <h3>Airport Transfer</h3>
+                    <p>Private driver. Flight tracking. Meet at gate. Fixed price.</p>
+                    <div class="concierge-price">€50 flat</div>
+                </div>
+                
+                <div class="concierge-card reveal">
+                    <div class="concierge-icon">⚡</div>
+                    <h3>24/7 Emergency</h3>
+                    <p>Locksmith, plumber, electrician. We arrive in 2 hours max.</p>
+                    <div class="concierge-price">Included</div>
+                </div>
+                
+                <div class="concierge-card reveal">
+                    <div class="concierge-icon">🌍</div>
+                    <h3>Permit Help</h3>
+                    <p>Residence permit, codice fiscale, SPID. We do the paperwork.</p>
+                    <div class="concierge-price">€150/doc</div>
+                </div>
+                
+                <div class="concierge-card reveal">
+                    <div class="concierge-icon">🕐</div>
+                    <h3>Check-in/out</h3>
+                    <p>Flexible timing. Weekend/holiday OK. Video inventory together.</p>
+                    <div class="concierge-price">Any time</div>
+                </div>
+                
+                <div class="concierge-card reveal">
+                    <div class="concierge-icon">📦</div>
+                    <h3>Mail Service</h3>
+                    <p>Receive packages before you arrive. Forward mail anywhere.</p>
+                    <div class="concierge-price">€20/month</div>
+                </div>
+            </div>
+            
+            <div class="concierge-cta reveal">
+                <p class="concierge-note">All services available from day one. Pay only for what you use.</p>
+                <a href="/concierge.html" class="cta-ghost">Explore All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #FFD700, #FFA500); border-radius: 50%; opacity: 0.9;"></div>
+                    <h3>BOOM</h3>
+                </div>
+                <p>
+                    Built in Rome, for Rome.<br><br>
+                    <strong>Egidi Immobiliare S.r.l.</strong><br>
+                    P.IVA 17322991005
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>System</h4>
+                <ul>
+                    <li><a href="/apartments.html">Apartments</a></li>
+                    <li><a href="/property-finding.html">Property Finding</a></li>
+                    <li><a href="/how-it-works.html">How It Works</a></li>
+                    <li><a href="/concierge.html">Concierge</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="/about.html">Why BOOM</a></li>
+                    <li><a href="/owners.html">For Owners</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="/terms.html">Terms</a></li>
+                    <li><a href="/privacy.html">Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <span>© 2025 BOOM – Rome, Italy</span>
+            <span>Status: Operational</span>
+        </div>
+    </footer>
+
+    <script>
+        // Custom Cursor (Desktop only)
+        if (window.matchMedia('(hover: hover)').matches) {
+            const cursor = document.querySelector('.cursor');
+            const follower = document.querySelector('.cursor-follower');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                setTimeout(() => {
+                    follower.style.left = e.clientX - 10 + 'px';
+                    follower.style.top = e.clientY - 10 + 'px';
+                }, 100);
+            });
+
+            document.querySelectorAll('a, button').forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(2)';
+                    follower.style.transform = 'scale(0.5)';
+                });
+                link.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                    follower.style.transform = 'scale(1)';
+                });
+            });
+        }
+
+        // Navbar scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        function reveal() {
+            reveals.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        reveal();
+
+        // Parallax on Hero
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroBg = document.querySelector('.hero-bg-text');
+            if (heroBg) {
+                heroBg.style.transform = `translate(-50%, calc(-50% + ${scrolled * 0.3}px))`;
+            }
+        });
+    </script>
+</body>
+</html>

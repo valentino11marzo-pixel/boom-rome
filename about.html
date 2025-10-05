@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - BOOM</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;900&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --pure-black: #000000;
+            --dark-void: #0A0A0A;
+            --dark-surface: #111111;
+            --text-primary: #FFFFFF;
+            --text-fade: #666666;
+            --text-secondary: #999999;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--pure-black);
+            color: var(--text-primary);
+            font-weight: 200;
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            padding: 20px 50px;
+            background: rgba(0,0,0,0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
+        }
+
+        .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+            font-weight: 400;
+        }
+
+        .nav-link.active {
+            color: var(--gold);
+        }
+
+        .nav-cta {
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold);
+            color: var(--pure-black);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 150px 50px 100px;
+            background: linear-gradient(180deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--gold);
+            color: var(--pure-black);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .hero-title {
+            font-size: clamp(60px, 12vw, 140px);
+            font-weight: 100;
+            line-height: 0.85;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .gold-accent {
+            color: var(--gold);
+            font-weight: 300;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 100px 50px;
+            background: var(--dark-void);
+        }
+
+        .story-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .story-text {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            font-weight: 300;
+            color: var(--text-secondary);
+        }
+
+        .story-highlight {
+            font-size: 56px;
+            font-weight: 900;
+            color: var(--gold);
+            display: block;
+            margin: 60px 0;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            text-align: center;
+        }
+
+        .quote {
+            padding: 40px;
+            border-left: 4px solid var(--gold);
+            background: rgba(255, 215, 0, 0.03);
+            margin: 60px 0;
+        }
+
+        .quote-text {
+            font-size: 18px;
+            font-style: italic;
+            line-height: 1.8;
+            color: var(--text-primary);
+        }
+
+        .quote-author {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-top: 20px;
+        }
+
+        /* Stats */
+        .stats-section {
+            padding: 100px 50px;
+            background: var(--pure-black);
+        }
+
+        .stats-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 215, 0, 0.03);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 200;
+            color: var(--gold);
+            font-family: 'Oswald', sans-serif;
+            margin-bottom: 15px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            line-height: 1.6;
+        }
+
+        /* Mission */
+        .mission-section {
+            padding: 100px 50px;
+            background: var(--dark-void);
+        }
+
+        .mission-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mission-title {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 100;
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 60px 0;
+            text-align: left;
+        }
+
+        .mission-item {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+        }
+
+        .mission-item:hover {
+            background: rgba(255, 215, 0, 0.05);
+            border-color: var(--gold);
+            transform: translateX(10px);
+        }
+
+        .mission-icon {
+            color: var(--gold);
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .mission-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 100px 50px;
+            text-align: center;
+            background: var(--pure-black);
+        }
+
+        .cta-title {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 100;
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            padding: 20px 60px;
+            background: var(--gold);
+            color: var(--pure-black);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.4s;
+        }
+
+        .cta-primary:hover {
+            transform: scaleX(1.05);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 140px 20px 60px;
+            }
+
+            .story-section,
+            .stats-section,
+            .mission-section,
+            .cta-section {
+                padding: 60px 20px;
+            }
+
+            .story-highlight {
+                font-size: 36px;
+            }
+
+            .stats-grid,
+            .mission-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Nav -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-circle"></div>
+                <span class="logo-text">BOOM</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="/apartments.html" class="nav-link">Apartments</a>
+                <a href="/property-finding.html" class="nav-link">Property Finding</a>
+                <a href="/concierge.html" class="nav-link">Concierge</a>
+                <a href="/how-it-works.html" class="nav-link">How It Works</a>
+                <a href="/about.html" class="nav-link active">About</a>
+                <a href="https://wa.me/393313251961" class="nav-cta">WhatsApp</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-tag">The Origin Story</div>
+            <h1 class="hero-title">
+                Born in Rome.<br>
+                <span class="gold-accent">Built for you.</span>
+            </h1>
+        </div>
+    </section>
+
+    <!-- Story -->
+    <section class="story-section">
+        <div class="story-container">
+            <p class="story-text">
+                I'm Valentino. 24 years old. Roman. I watched 500+ internationals get destroyed by Rome's rental system.
+            </p>
+            <p class="story-text">
+                Friends sleeping in hostels for months. Colleagues scammed out of thousands. Brilliant people leaving Rome because they couldn't find a home.
+            </p>
+
+            <span class="story-highlight">Enough.</span>
+
+            <p class="story-text">
+                BOOM isn't another agency. It's revenge against a broken system.
+            </p>
+            <p class="story-text">
+                Every feature exists because someone suffered without it. Every guarantee exists because someone got screwed. Every process is simple because the old way was deliberately complicated to extract more fees.
+            </p>
+
+            <div class="quote">
+                <p class="quote-text">
+                    "If it works in Rome, it works anywhere. Rome has the most fucked rental market in Europe. We cracked it. Everything else is easy."
+                </p>
+                <div class="quote-author">— Valentino, Founder</div>
+            </div>
+
+            <p class="story-text">
+                I spent 2 years building relationships with landlords. Learning which agencies are honest. Understanding which neighborhoods work for internationals. Figuring out the actual costs, not the bullshit ones.
+            </p>
+            <p class="story-text">
+                Then I built BOOM. No fancy VC money. No corporate overhead. Just me, a developer, and a mission to fix what's broken.
+            </p>
+            <p class="story-text">
+                This is personal.
+            </p>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Happy tenants who found home in 48 hours</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">0</div>
+                <div class="stat-label">Hidden fees. Ever. We promise.</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Real support. I personally answer at 3am.</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Video verified. No catfishing. No surprises.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="mission-section">
+        <div class="mission-container">
+            <h2 class="mission-title">
+                What we stand for
+            </h2>
+            
+            <div class="mission-grid">
+                <div class="mission-item">
+                    <span class="mission-icon">✓</span>
+                    <span class="mission-text">Real video tours, not 2015 photos</span>
+                </div>
+                <div class="mission-item">
+                    <span class="mission-icon">✓</span>
+                    <span class="mission-text">48 hour guarantee or we pay your hotel</span>
+                </div>
+                <div class="mission-item">
+                    <span class="mission-icon">✓</span>
+                    <span class="mission-text">Zero hidden fees. The price is the price</span>
+                </div>
+                <div class="mission-item">
+                    <span class="mission-icon">✓</span>
+                    <span class="mission-text">24/7 WhatsApp support that actually works</span>
+                </div>
+                <div class="mission-item">
+                    <span class="mission-icon">✓</span>
+                    <span class="mission-text">English contracts, English support, no BS</span>
+                </div>
+                <div class="mission-item">
+                    <span class="mission-icon">✓</span>
+                    <span class="mission-text">We answer in 2 minutes, not 2 days</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <h2 class="cta-title">
+            Ready to find home?
+        </h2>
+        <a href="/apartments.html" class="cta-primary">Browse Apartments</a>
+    </section>
+</body>
+</html>

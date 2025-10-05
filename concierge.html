@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOM – Concierge Services</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;900&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --cyan: #00CED1;
+            --green: #00FF88;
+            --red: #FF3B3B;
+            --purple: #9D4EDD;
+            --orange: #FF6B35;
+            --pure-black: #000000;
+            --dark-surface: #111111;
+            --text-primary: #FFFFFF;
+            --text-secondary: #999999;
+            --text-fade: #666666;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--pure-black);
+            color: var(--text-primary);
+            font-weight: 200;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            padding: 30px 50px;
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            opacity: 0.9;
+        }
+
+        .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        /* Hero Section */
+        .concierge-hero {
+            padding: 150px 50px 100px;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(0, 206, 209, 0.05) 0%, transparent 60%);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--cyan);
+            color: var(--pure-black);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: clamp(40px, 8vw, 100px);
+            font-weight: 100;
+            text-transform: uppercase;
+            line-height: 0.85;
+            letter-spacing: -3px;
+            margin-bottom: 30px;
+        }
+
+        .accent-text {
+            color: var(--cyan);
+            font-weight: 300;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        /* Services Grid */
+        .services-section {
+            padding: 100px 50px;
+            background: var(--dark-surface);
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--gold);
+            color: var(--pure-black);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 100;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--pure-black);
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--green));
+            transform: translateX(-100%);
+            transition: transform 0.5s;
+        }
+
+        .service-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--cyan);
+            background: rgba(0, 206, 209, 0.02);
+        }
+
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .service-title {
+            font-size: 22px;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+
+        .service-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .service-price {
+            font-size: 28px;
+            color: var(--cyan);
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .service-price-note {
+            font-size: 12px;
+            color: var(--text-fade);
+        }
+
+        /* Premium Services */
+        .premium-section {
+            padding: 100px 50px;
+            background: linear-gradient(135deg, rgba(157, 78, 221, 0.05), transparent);
+        }
+
+        .premium-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 60px auto;
+            align-items: center;
+        }
+
+        .premium-content h2 {
+            font-size: clamp(32px, 5vw, 48px);
+            font-weight: 200;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .premium-list {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .premium-item {
+            display: flex;
+            align-items: start;
+            gap: 15px;
+            padding: 20px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 2px solid var(--purple);
+            transition: all 0.3s;
+        }
+
+        .premium-item:hover {
+            background: rgba(157, 78, 221, 0.05);
+            transform: translateX(10px);
+        }
+
+        .premium-icon {
+            color: var(--purple);
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .premium-text h3 {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 8px;
+        }
+
+        .premium-text p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .premium-visual {
+            background: var(--dark-surface);
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            position: relative;
+        }
+
+        .premium-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background: var(--purple);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Packages Section */
+        .packages-section {
+            padding: 100px 50px;
+            background: var(--pure-black);
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .package-card {
+            background: var(--dark-surface);
+            border: 2px solid transparent;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .package-card.featured {
+            border-color: var(--gold);
+            transform: scale(1.05);
+        }
+
+        .package-card:hover {
+            border-color: var(--cyan);
+        }
+
+        .package-label {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 5px 20px;
+            background: var(--gold);
+            color: var(--pure-black);
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .package-name {
+            font-size: 24px;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .package-price {
+            font-size: 56px;
+            font-weight: 200;
+            color: var(--cyan);
+            margin-bottom: 10px;
+        }
+
+        .package-price-currency {
+            font-size: 24px;
+        }
+
+        .package-period {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .package-features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .package-features li {
+            padding: 10px 0;
+            font-size: 13px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .feature-check {
+            color: var(--green);
+        }
+
+        .package-cta {
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid var(--cyan);
+            color: var(--cyan);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .package-cta:hover {
+            background: var(--cyan);
+            color: var(--pure-black);
+        }
+
+        .package-card.featured .package-cta {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--pure-black);
+        }
+
+        /* On-Demand Section */
+        .ondemand-section {
+            padding: 100px 50px;
+            background: var(--dark-surface);
+        }
+
+        .ondemand-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 60px auto;
+        }
+
+        .ondemand-item {
+            background: var(--pure-black);
+            padding: 30px 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .ondemand-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .ondemand-emoji {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .ondemand-name {
+            font-size: 14px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+
+        .ondemand-price {
+            font-size: 20px;
+            color: var(--gold);
+        }
+
+        /* How It Works */
+        .how-section {
+            padding: 100px 50px;
+            background: var(--pure-black);
+        }
+
+        .how-steps {
+            max-width: 800px;
+            margin: 60px auto;
+        }
+
+        .how-step {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 60px;
+            align-items: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--cyan);
+            color: var(--pure-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 20px;
+            font-weight: 400;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .step-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 120px 50px;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 206, 209, 0.08) 0%, transparent 60%);
+        }
+
+        .cta-title {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 100;
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 20px 60px;
+            background: var(--cyan);
+            color: var(--pure-black);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 206, 209, 0.3);
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px;
+            }
+
+            .concierge-hero {
+                padding: 120px 20px 60px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .premium-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ondemand-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/index.html" class="logo">
+                <div class="logo-circle"></div>
+                <span class="logo-text">BOOM</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="concierge-hero">
+        <span class="hero-badge">Available 24/7</span>
+        
+        <h1>
+            Life doesn't stop<br>
+            at the apartment.<br>
+            <span class="accent-text">We handle everything.</span>
+        </h1>
+        
+        <p class="hero-subtitle">
+            From airport pickups to midnight emergencies, weekly cleaning to bureaucratic nightmares. 
+            One WhatsApp message away. This is how living in Rome should feel.
+        </p>
+    </section>
+
+    <!-- Core Services -->
+    <section class="services-section">
+        <div class="services-container">
+            <div class="section-header">
+                <span class="section-tag">Core Services</span>
+                <h2 class="section-title">Always Included</h2>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🆘</div>
+                    <h3 class="service-title">24/7 Emergency</h3>
+                    <p class="service-desc">
+                        Locked out? Pipe burst? Power failure? We respond in 2 hours max, 
+                        any time, any day. Even Christmas at 3am.
+                    </p>
+                    <div class="service-price">FREE</div>
+                    <div class="service-price-note">Always included</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3 class="service-title">Maintenance</h3>
+                    <p class="service-desc">
+                        Something breaks? WhatsApp us a photo. Technician arrives next day. 
+                        You pay nothing for normal wear and tear.
+                    </p>
+                    <div class="service-price">FREE</div>
+                    <div class="service-price-note">Normal maintenance covered</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3 class="service-title">WhatsApp Support</h3>
+                    <p class="service-desc">
+                        Can't figure out the heating? Need a restaurant recommendation? 
+                        Lost your keys? We answer in 2 minutes.
+                    </p>
+                    <div class="service-price">FREE</div>
+                    <div class="service-price-note">Average: 2 min response</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📄</div>
+                    <h3 class="service-title">Document Help</h3>
+                    <p class="service-desc">
+                        Contracts, utility setup, registration forms. We translate, explain, 
+                        and guide you through Italian bureaucracy.
+                    </p>
+                    <div class="service-price">FREE</div>
+                    <div class="service-price-note">Basic assistance included</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3 class="service-title">Check-in/out</h3>
+                    <p class="service-desc">
+                        Flexible timing, including weekends. Video inventory together. 
+                        Keys ready. Welcome pack included.
+                    </p>
+                    <div class="service-price">FREE</div>
+                    <div class="service-price-note">Any time arrival</div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">💬</div>
+                    <h3 class="service-title">Local Guidance</h3>
+                    <p class="service-desc">
+                        Best grocery stores, gym recommendations, where to eat, how to get around. 
+                        We're your Rome insiders.
+                    </p>
+                    <div class="service-price">FREE</div>
+                    <div class="service-price-note">Unlimited advice</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Services -->
+    <section class="premium-section">
+        <div class="section-header">
+            <span class="section-tag">Premium Services</span>
+            <h2 class="section-title">Make Life Easier</h2>
+        </div>
+        
+        <div class="premium-grid">
+            <div class="premium-content">
+                <h2>Beyond Basic.<br><span class="accent-text">Pure Convenience.</span></h2>
+                
+                <div class="premium-list">
+                    <div class="premium-item">
+                        <span class="premium-icon">🧹</span>
+                        <div class="premium-text">
+                            <h3>Weekly Cleaning</h3>
+                            <p>Professional service, same cleaner every week, supplies included. €15/hour</p>
+                        </div>
+                    </div>
+                    
+                    <div class="premium-item">
+                        <span class="premium-icon">✈️</span>
+                        <div class="premium-text">
+                            <h3>Airport Transfer</h3>
+                            <p>Private driver, flight tracking, meet at arrivals. Fixed €50 from FCO/CIA</p>
+                        </div>
+                    </div>
+                    
+                    <div class="premium-item">
+                        <span class="premium-icon">🛒</span>
+                        <div class="premium-text">
+                            <h3>Grocery Setup</h3>
+                            <p>Fridge stocked before arrival. We shop, you reimburse + €30 service</p>
+                        </div>
+                    </div>
+                    
+                    <div class="premium-item">
+                        <span class="premium-icon">👔</span>
+                        <div class="premium-text">
+                            <h3>Laundry Service</h3>
+                            <p>Pickup, wash, fold, deliver. 48h turnaround. €30 per load</p>
+                        </div>
+                    </div>
+                    
+                    <div class="premium-item">
+                        <span class="premium-icon">📮</span>
+                        <div class="premium-text">
+                            <h3>Mail & Packages</h3>
+                            <p>Receive packages before you arrive, forward mail anywhere. €20/month</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="premium-visual">
+                <span class="premium-badge">Most Popular</span>
+                <div style="text-align: center;">
+                    <div style="font-size: 120px; margin-bottom: 20px;">✨</div>
+                    <h3 style="font-size: 24px; margin-bottom: 10px;">Full Service Living</h3>
+                    <p style="color: var(--text-secondary);">Let us handle the details</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages -->
+    <section class="packages-section">
+        <div class="packages-container">
+            <div class="section-header">
+                <span class="section-tag">Bundles</span>
+                <h2 class="section-title">Choose Your Lifestyle</h2>
+            </div>
+            
+            <div class="packages-grid">
+                <div class="package-card">
+                    <h3 class="package-name">Essential</h3>
+                    <div class="package-price">
+                        <span class="package-price-currency">€</span>0
+                    </div>
+                    <div class="package-period">Always free</div>
+                    
+                    <ul class="package-features">
+                        <li><span class="feature-check">✓</span> 24/7 Emergency Support</li>
+                        <li><span class="feature-check">✓</span> Maintenance Coordination</li>
+                        <li><span class="feature-check">✓</span> WhatsApp Support</li>
+                        <li><span class="feature-check">✓</span> Check-in/out Flexibility</li>
+                        <li><span class="feature-check">✓</span> Basic Document Help</li>
+                    </ul>
+                    
+                    <a href="#" class="package-cta">Included</a>
+                </div>
+                
+                <div class="package-card featured">
+                    <span class="package-label">Most Popular</span>
+                    <h3 class="package-name">Comfort</h3>
+                    <div class="package-price">
+                        <span class="package-price-currency">€</span>149
+                    </div>
+                    <div class="package-period">per month</div>
+                    
+                    <ul class="package-features">
+                        <li><span class="feature-check">✓</span> Everything in Essential</li>
+                        <li><span class="feature-check">✓</span> Bi-weekly Cleaning (4h)</li>
+                        <li><span class="feature-check">✓</span> 1 Airport Transfer</li>
+                        <li><span class="feature-check">✓</span> Bureaucracy Assistance</li>
+                        <li><span class="feature-check">✓</span> Priority Support</li>
+                    </ul>
+                    
+                    <a href="#" class="package-cta">Choose Comfort</a>
+                </div>
+                
+                <div class="package-card">
+                    <h3 class="package-name">Premium</h3>
+                    <div class="package-price">
+                        <span class="package-price-currency">€</span>299
+                    </div>
+                    <div class="package-period">per month</div>
+                    
+                    <ul class="package-features">
+                        <li><span class="feature-check">✓</span> Everything in Comfort</li>
+                        <li><span class="feature-check">✓</span> Weekly Cleaning (4h)</li>
+                        <li><span class="feature-check">✓</span> 2 Airport Transfers</li>
+                        <li><span class="feature-check">✓</span> Laundry Service (2x/mo)</li>
+                        <li><span class="feature-check">✓</span> Personal Assistant (2h)</li>
+                    </ul>
+                    
+                    <a href="#" class="package-cta">Go Premium</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- On-Demand Services -->
+    <section class="ondemand-section">
+        <div class="section-header">
+            <span class="section-tag">À La Carte</span>
+            <h2 class="section-title">Need Something Specific?</h2>
+        </div>
+        
+        <div class="ondemand-grid">
+            <div class="ondemand-item">
+                <div class="ondemand-emoji">🏛️</div>
+                <div class="ondemand-name">Residence Permit</div>
+                <div class="ondemand-price">€150</div>
+            </div>
+            
+            <div class="ondemand-item">
+                <div class="ondemand-emoji">🏥</div>
+                <div class="ondemand-name">Health Card Setup</div>
+                <div class="ondemand-price">€100</div>
+            </div>
+            
+            <div class="ondemand-item">
+                <div class="ondemand-emoji">🆔</div>
+                <div class="ondemand-name">Codice Fiscale</div>
+                <div class="ondemand-price">€80</div>
+            </div>
+            
+            <div class="ondemand-item">
+                <div class="ondemand-emoji">📱</div>
+                <div class="ondemand-name">SPID Digital ID</div>
+                <div class="ondemand-price">€100</div>
+            </div>
+            
+            <div class="ondemand-item">
+                <div class="ondemand-emoji">🚗</div>
+                <div class="ondemand-name">Parking Permit</div>
+                <div class="ondemand-price">€120</div>
+            </div>
+            
+            <div class="ondemand-item">
+                <div class="ondemand-emoji">💪</div>
+                <div class="ondemand-name">Gym Membership</div>
+                <div class="ondemand-price">€50 setup</div>
+            </div>
+            
+            <div class="ondemand-item">
+                <div class="ondemand-emoji">🍕</div>
+                <div class="ondemand-name">Restaurant Booking</div>
+                <div class="ondemand-price">€20</div>
+            </div>
+            
+            <div class="ondemand-item">
+                <div class="ondemand-emoji">🎫</div>
+                <div class="ondemand-name">Event Tickets</div>
+                <div class="ondemand-price">€25 + cost</div>
+            </div>
+            
+            <div class="ondemand-item">
+                <div class="ondemand-emoji">🐕</div>
+                <div class="ondemand-name">Pet Registration</div>
+                <div class="ondemand-price">€80</div>
+            </div>
+            
+            <div class="ondemand-item">
+                <div class="ondemand-emoji">🏦</div>
+                <div class="ondemand-name">Bank Account</div>
+                <div class="ondemand-price">€100</div>
+            </div>
+            
+            <div class="ondemand-item">
+                <div class="ondemand-emoji">📦</div>
+                <div class="ondemand-name">IKEA Assembly</div>
+                <div class="ondemand-price">€40/hour</div>
+            </div>
+            
+            <div class="ondemand-item">
+                <div class="ondemand-emoji">🌐</div>
+                <div class="ondemand-name">Translation</div>
+                <div class="ondemand-price">€30/doc</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-section">
+        <div class="section-header">
+            <h2 class="section-title">How Concierge Works</h2>
+        </div>
+        
+        <div class="how-steps">
+            <div class="how-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>WhatsApp Us</h3>
+                    <p>Need something? Just message. "Airport pickup Tuesday 3pm" or "AC not working" 
+                    or "How do I get to the Colosseum?" Anything.</p>
+                </div>
+            </div>
+            
+            <div class="how-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>We Handle It</h3>
+                    <p>Within 2 minutes, you get confirmation. We arrange everything - technicians, 
+                    drivers, cleaners, bureaucrats. You relax.</p>
+                </div>
+            </div>
+            
+            <div class="how-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Simple Billing</h3>
+                    <p>Pay only for what you use. Monthly services on your rent invoice. 
+                    One-time services via Stripe. Full transparency, no surprises.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2 class="cta-title">
+            Stop struggling.<br>
+            <span class="accent-text">Start living.</span>
+        </h2>
+        
+        <div class="cta-buttons">
+            <a href="https://wa.me/393313251961?text=I%20need%20concierge%20services" class="btn-primary">WhatsApp Now</a>
+        </div>
+    </section>
+</body>
+</html>

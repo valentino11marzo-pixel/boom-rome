@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - BOOM</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;900&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --pure-black: #000000;
+            --dark-void: #0A0A0A;
+            --text-primary: #FFFFFF;
+            --text-fade: #666666;
+            --text-secondary: #999999;
+            --green: #00FF88;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--pure-black);
+            color: var(--text-primary);
+            font-weight: 200;
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            padding: 20px 50px;
+            background: rgba(0,0,0,0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
+        }
+
+        .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+            font-weight: 400;
+        }
+
+        .nav-cta {
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-cta:hover {
+            background: var(--gold);
+            color: var(--pure-black);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 150px 50px 100px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: start;
+        }
+
+        /* Left Column */
+        .contact-info {
+            
+        }
+
+        .page-tag {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--gold);
+            color: var(--pure-black);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: clamp(50px, 8vw, 96px);
+            font-weight: 100;
+            line-height: 0.85;
+            letter-spacing: -0.03em;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .gold-accent {
+            color: var(--gold);
+            font-weight: 300;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        .contact-methods {
+            margin-bottom: 60px;
+        }
+
+        .contact-method {
+            padding: 30px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .method-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .method-value {
+            font-size: 20px;
+            font-weight: 300;
+        }
+
+        .method-value a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .method-value a:hover {
+            color: var(--gold);
+        }
+
+        .method-note {
+            font-size: 12px;
+            color: var(--text-fade);
+            margin-top: 8px;
+        }
+
+        .company-info {
+            padding: 40px;
+            background: rgba(255, 215, 0, 0.03);
+            border-left: 4px solid var(--gold);
+        }
+
+        .company-info h3 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .company-info p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Right Column - Form */
+        .contact-form-container {
+            
+        }
+
+        .form-intro {
+            margin-bottom: 40px;
+        }
+
+        .form-intro h3 {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .form-intro p {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 18px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+            font-weight: 300;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 20px;
+            background: var(--gold);
+            color: var(--pure-black);
+            border: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-submit:hover {
+            transform: scaleX(1.05);
+        }
+
+        .form-note {
+            font-size: 11px;
+            color: var(--text-fade);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .container {
+                padding: 120px 20px 60px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Nav -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-circle"></div>
+                <span class="logo-text">BOOM</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="/apartments.html" class="nav-link">Apartments</a>
+                <a href="/property-finding.html" class="nav-link">Property Finding</a>
+                <a href="/concierge.html" class="nav-link">Concierge</a>
+                <a href="/how-it-works.html" class="nav-link">How It Works</a>
+                <a href="/about.html" class="nav-link">About</a>
+                <a href="https://wa.me/393313251961" class="nav-cta">WhatsApp</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="content-grid">
+            <!-- Left Column - Contact Info -->
+            <div class="contact-info">
+                <div class="page-tag">Get In Touch</div>
+                <h1 class="page-title">
+                    We answer<br>
+                    <span class="gold-accent">fast</span>
+                </h1>
+                <p class="page-subtitle">
+                    WhatsApp is fastest. Email works too. We respond within 2 minutes during business hours.
+                </p>
+
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="method-label">WhatsApp (Fastest)</div>
+                        <div class="method-value">
+                            <a href="https://wa.me/393313251961">+39 331 325 1961</a>
+                        </div>
+                        <div class="method-note">Average response time: 2 minutes</div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="method-label">Email</div>
+                        <div class="method-value">
+                            <a href="mailto:hello@boom-rome.com">hello@boom-rome.com</a>
+                        </div>
+                        <div class="method-note">Average response time: 1 hour</div>
+                    </div>
+
+                    <div class="contact-method">
+                        <div class="method-label">Office</div>
+                        <div class="method-value">Via dei Coronari 181, Roma</div>
+                        <div class="method-note">By appointment only</div>
+                    </div>
+                </div>
+
+                <div class="company-info">
+                    <h3>Legal Info</h3>
+                    <p>
+                        <strong>Egidi Immobiliare S.r.l.</strong><br>
+                        P.IVA: 17322991005<br><br>
+                        
+                        <strong>Sede Operativa:</strong><br>
+                        Via dei Coronari 181, Roma<br><br>
+                        
+                        <strong>Sede Legale:</strong><br>
+                        Viale Liegi 42, Roma
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Column - Contact Form -->
+            <div class="contact-form-container">
+                <div class="form-intro">
+                    <h3>Send a Message</h3>
+                    <p>Fill out the form and we'll get back to you ASAP.</p>
+                </div>
+
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-input" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Phone (optional)</label>
+                        <input type="tel" class="form-input" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Subject</label>
+                        <select class="form-select" name="subject" required>
+                            <option value="">Choose one</option>
+                            <option value="apartment">I want to rent an apartment</option>
+                            <option value="pfs">Property Finding Service</option>
+                            <option value="owner">I'm a property owner</option>
+                            <option value="concierge">Concierge services</option>
+                            <option value="support">Support / Issue</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-textarea" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit">Send Message</button>
+
+                    <div class="form-note">
+                        We typically respond within 2 minutes on WhatsApp, 1 hour via email
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            console.log('Contact form submitted:', data);
+            
+            alert('Message sent! We\'ll get back to you within 1 hour.');
+            
+            this.reset();
+        });
+    </script>
+</body>
+</html>

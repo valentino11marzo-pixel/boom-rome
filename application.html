@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Apartment - BOOM</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;900&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --cyan: #00CED1;
+            --green: #00FF88;
+            --pure-black: #000000;
+            --dark-void: #0A0A0A;
+            --text-primary: #FFFFFF;
+            --text-fade: #666666;
+            --text-secondary: #999999;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--pure-black);
+            color: var(--text-primary);
+            font-weight: 200;
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            padding: 20px 50px;
+            background: rgba(0,0,0,0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
+        }
+
+        .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        /* Main */
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 150px 50px 100px;
+        }
+
+        .page-header {
+            margin-bottom: 60px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--gold);
+        }
+
+        .page-title {
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 100;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .page-subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+        }
+
+        /* Grid Layout */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+        }
+
+        /* Apartment Summary */
+        .apartment-card {
+            background: var(--dark-void);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .apt-header {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .apt-image {
+            width: 200px;
+            height: 150px;
+            background: var(--dark-void);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            flex-shrink: 0;
+        }
+
+        .apt-info h2 {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        .apt-address {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+        }
+
+        .apt-features {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .apt-feature {
+            font-size: 12px;
+            color: var(--text-fade);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Payment Breakdown */
+        .payment-breakdown {
+            background: rgba(255, 215, 0, 0.03);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 40px;
+        }
+
+        .breakdown-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .cost-section {
+            margin-bottom: 40px;
+        }
+
+        .cost-section-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-fade);
+            margin-bottom: 20px;
+        }
+
+        .cost-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 14px;
+        }
+
+        .cost-line:last-child {
+            border-bottom: none;
+        }
+
+        .cost-label {
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-icon {
+            cursor: help;
+            color: var(--gold);
+            font-size: 12px;
+        }
+
+        .cost-value {
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+
+        .cost-line.highlight {
+            background: rgba(255, 215, 0, 0.05);
+            padding: 20px 15px;
+            margin: 20px -15px;
+        }
+
+        .cost-line.highlight .cost-label {
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+        }
+
+        .cost-line.highlight .cost-value {
+            font-size: 28px;
+            font-weight: 300;
+            color: var(--gold);
+        }
+
+        .cost-line.total {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid var(--gold);
+            border-bottom: none;
+        }
+
+        .cost-line.total .cost-label {
+            font-size: 18px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-primary);
+        }
+
+        .cost-line.total .cost-value {
+            font-size: 48px;
+            font-weight: 100;
+            font-family: 'Oswald', sans-serif;
+            color: var(--gold);
+            letter-spacing: -2px;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .info-box-title {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        .info-box-text {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .info-box.success {
+            background: rgba(0, 255, 136, 0.05);
+            border-color: var(--green);
+        }
+
+        .info-box.success .info-box-title {
+            color: var(--green);
+        }
+
+        /* Payment Options */
+        .payment-options {
+            margin: 40px 0;
+        }
+
+        .payment-option {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .payment-option:hover {
+            border-color: var(--gold);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        .payment-option.selected {
+            border-color: var(--gold);
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .payment-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .payment-option-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .payment-option-title {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .payment-option-badge {
+            padding: 5px 15px;
+            background: var(--gold);
+            color: var(--pure-black);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .payment-option-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Application Form */
+        .form-section {
+            margin-bottom: 40px;
+        }
+
+        .form-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-fade);
+            margin-bottom: 10px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 15px 20px;
+            background: var(--dark-void);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(255, 215, 0, 0.05);
+        }
+
+        textarea.form-input {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Terms */
+        .terms-box {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .terms-checkbox:last-child {
+            margin-bottom: 0;
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .terms-text {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .terms-text a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .terms-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 25px;
+            background: var(--gold);
+            color: var(--pure-black);
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: scaleX(1.05);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 120px 20px 60px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .apt-header {
+                flex-direction: column;
+            }
+
+            .apt-image {
+                width: 100%;
+                height: 200px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Nav -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-circle"></div>
+                <span class="logo-text">BOOM</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <a href="/apartments.html" class="back-link">← Back to Apartments</a>
+            <h1 class="page-title">Apply Now</h1>
+            <p class="page-subtitle">Complete your application and secure this apartment.</p>
+        </div>
+
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <!-- Left Column - Form -->
+            <div>
+                <!-- Apartment Summary -->
+                <div class="apartment-card">
+                    <div class="apt-header">
+                        <div class="apt-image">
+                            <!-- Image placeholder -->
+                        </div>
+                        <div class="apt-info">
+                            <h2>Modern 1BR in Trastevere</h2>
+                            <p class="apt-address">Via della Lungaretta 42, Trastevere</p>
+                            <div class="apt-features">
+                                <span class="apt-feature">🛏️ 1 Bedroom</span>
+                                <span class="apt-feature">📏 45m²</span>
+                                <span class="apt-feature">🏢 2nd Floor</span>
+                                <span class="apt-feature">✓ WiFi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Application Form -->
+                <form id="applicationForm">
+                    <div class="form-section">
+                        <h3 class="form-title">Personal Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-input" required>
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone</label>
+                                <input type="tel" class="form-input" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-title">Move Details</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">Move-in Date</label>
+                                <input type="date" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Intended Stay</label>
+                                <select class="form-input" required>
+                                    <option value="">Select duration</option>
+                                    <option value="3">3 months</option>
+                                    <option value="6">6 months</option>
+                                    <option value="12">12 months</option>
+                                    <option value="24">24 months</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3 class="form-title">Additional Information</h3>
+                        <div class="form-group">
+                            <label class="form-label">Reason for Move to Rome</label>
+                            <textarea class="form-input" placeholder="e.g., Work, Study, Internship..." required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Terms -->
+                    <div class="terms-box">
+                        <div class="terms-checkbox">
+                            <input type="checkbox" id="terms1" required>
+                            <label for="terms1" class="terms-text">
+                                I confirm all information provided is accurate and I'm ready to proceed with payment upon approval.
+                            </label>
+                        </div>
+                        <div class="terms-checkbox">
+                            <input type="checkbox" id="terms2" required>
+                            <label for="terms2" class="terms-text">
+                                I understand the <a href="#">payment structure</a> and agree to the <a href="#">Terms of Service</a>.
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        Submit Application
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right Column - Payment Info -->
+            <div>
+                <!-- Payment Breakdown -->
+                <div class="payment-breakdown">
+                    <h3 class="breakdown-title">Payment Breakdown</h3>
+
+                    <!-- Monthly Costs -->
+                    <div class="cost-section">
+                        <div class="cost-section-title">Monthly Costs</div>
+                        <div class="cost-line">
+                            <span class="cost-label">
+                                Base Rent
+                                <span class="info-icon" title="Your monthly rent payment">ⓘ</span>
+                            </span>
+                            <span class="cost-value">€900</span>
+                        </div>
+                        <div class="cost-line">
+                            <span class="cost-label">
+                                Utilities Estimate
+                                <span class="info-icon" title="Water, electricity, gas, internet">ⓘ</span>
+                            </span>
+                            <span class="cost-value">~€80</span>
+                        </div>
+                        <div class="cost-line highlight">
+                            <span class="cost-label">Monthly Total</span>
+                            <span class="cost-value">€980</span>
+                        </div>
+                    </div>
+
+                    <!-- Upfront Costs -->
+                    <div class="cost-section">
+                        <div class="cost-section-title">Upfront Payment (Due at Signing)</div>
+                        <div class="cost-line">
+                            <span class="cost-label">
+                                First Month Rent
+                            </span>
+                            <span class="cost-value">€900</span>
+                        </div>
+                        <div class="cost-line">
+                            <span class="cost-label">
+                                Security Deposit
+                                <span class="info-icon" title="Refundable at end of lease">ⓘ</span>
+                            </span>
+                            <span class="cost-value">€900</span>
+                        </div>
+                        <div class="cost-line">
+                            <span class="cost-label">
+                                BOOM Service Fee
+                                <span class="info-icon" title="1 month rent. Includes contract, utilities setup, 24/7 support">ⓘ</span>
+                            </span>
+                            <span class="cost-value">€900</span>
+                        </div>
+                        <div class="cost-line total">
+                            <span class="cost-label">Total Upfront</span>
+                            <span class="cost-value">€2,700</span>
+                        </div>
+                    </div>
+
+                    <!-- Info Box -->
+                    <div class="info-box success">
+                        <div class="info-box-title">✓ What's Included</div>
+                        <div class="info-box-text">
+                            • Professional contract in English<br>
+                            • Utilities setup & transfer<br>
+                            • Move-in coordination<br>
+                            • 24/7 WhatsApp support<br>
+                            • Free property maintenance<br>
+                            • Deposit protection guarantee
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Strategy Info -->
+                <div class="info-box">
+                    <div class="info-box-title">💡 Payment Strategy</div>
+                    <div class="info-box-text">
+                        <strong>Our service fee</strong> is capped at 1 month of rent, or max 10% of your annual contract value, whichever is lower.<br><br>
+                        Example: €900/month × 12 months = €10,800<br>
+                        10% = €1,080<br>
+                        We charge: <strong>€900</strong> (1 month, which is lower)
+                    </div>
+                </div>
+
+                <!-- Guarantee Box -->
+                <div class="info-box success">
+                    <div class="info-box-title">🔒 Our Guarantees</div>
+                    <div class="info-box-text">
+                        • <strong>48h Move-in:</strong> If we can't get you in within 48h of approval, we cover your hotel<br>
+                        • <strong>100% Verified:</strong> Every apartment is video-verified before listing<br>
+                        • <strong>Deposit Protection:</strong> Your deposit is legally protected and fully refundable<br>
+                        • <strong>No Hidden Fees:</strong> This is the complete cost. Nothing more.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('applicationForm');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate checkboxes
+            const terms1 = document.getElementById('terms1').checked;
+            const terms2 = document.getElementById('terms2').checked;
+            
+            if (!terms1 || !terms2) {
+                alert('Please accept all terms to continue');
+                return;
+            }
+            
+            // Collect form data
+            const formData = new FormData(form);
+            
+            // TODO: Send to backend
+            console.log('Form submitted:', Object.fromEntries(formData));
+            
+            // Show success message or redirect
+            alert('Application submitted! We\'ll review and contact you within 2 hours.');
+            
+            // Redirect to dashboard or confirmation page
+            // window.location.href = '/application-success.html';
+        });
+    </script>
+</body>
+</html>

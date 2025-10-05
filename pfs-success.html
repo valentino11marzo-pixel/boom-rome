@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Activated - BOOM</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;900&family=Oswald:wght@200;300;400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        :root {
+            --gold: #FFD700;
+            --green: #00FF88;
+            --pure-black: #000000;
+            --dark-void: #0A0A0A;
+            --text-primary: #FFFFFF;
+            --text-fade: #666666;
+            --text-secondary: #999999;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--pure-black);
+            color: var(--text-primary);
+            font-weight: 200;
+            letter-spacing: 0.02em;
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            padding: 20px 50px;
+            background: rgba(0,0,0,0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(255, 215, 0, 0.8); }
+        }
+
+        .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+        }
+
+        .main-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 150px 50px 100px;
+        }
+
+        .success-content {
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .success-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 40px;
+            background: var(--green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            animation: successPulse 2s infinite;
+        }
+
+        @keyframes successPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(0, 255, 136, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 60px rgba(0, 255, 136, 0.8); }
+        }
+
+        .success-title {
+            font-size: clamp(50px, 10vw, 100px);
+            font-weight: 100;
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            color: var(--green);
+        }
+
+        .success-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+            line-height: 1.6;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--text-fade);
+            padding: 2px;
+            margin: 60px 0;
+        }
+
+        .info-box {
+            background: var(--dark-void);
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .info-number {
+            font-size: 48px;
+            font-weight: 100;
+            color: var(--gold);
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+        }
+
+        .info-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-fade);
+        }
+
+        .next-steps {
+            background: rgba(255, 215, 0, 0.05);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            padding: 50px;
+            text-align: left;
+            margin: 60px 0;
+        }
+
+        .next-steps h3 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .step-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--pure-black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary {
+            padding: 20px 50px;
+            background: var(--gold);
+            color: var(--pure-black);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .cta-primary:hover {
+            transform: scaleX(1.05);
+        }
+
+        .cta-secondary {
+            padding: 20px 50px;
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .cta-secondary:hover {
+            background: var(--gold);
+            color: var(--pure-black);
+        }
+
+        .confirmation-box {
+            background: rgba(0, 255, 136, 0.05);
+            border: 1px solid var(--green);
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .confirmation-box p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                padding: 120px 20px 60px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .next-steps {
+                padding: 30px 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-primary,
+            .cta-secondary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-circle"></div>
+                <span class="logo-text">BOOM</span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <div class="success-content">
+            <div class="success-icon">✓</div>
+            
+            <h1 class="success-title">
+                Search Activated!
+            </h1>
+            
+            <p class="success-subtitle">
+                Payment confirmed. Our team is already hunting for your perfect apartment. You'll hear from us within 24 hours.
+            </p>
+
+            <div class="info-grid">
+                <div class="info-box">
+                    <div class="info-number">24H</div>
+                    <div class="info-label">First Update</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-number">5</div>
+                    <div class="info-label">Curated Options</div>
+                </div>
+                <div class="info-box">
+                    <div class="info-number">€350</div>
+                    <div class="info-label">Total Paid</div>
+                </div>
+            </div>
+
+            <div class="next-steps">
+                <h3>What Happens Next</h3>
+                
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Check Your Email (Now)</h4>
+                        <p>Confirmation sent to your inbox with your request details and reference number.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>We Start Searching (Today)</h4>
+                        <p>Our team activates your search across our network of landlords and off-market properties.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>You Get Options (Within 24h)</h4>
+                        <p>We'll send you 5 apartments with video tours, exact pricing, and availability via WhatsApp and email.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Fast Move-In (4-7 Days)</h4>
+                        <p>Select your favorite. We negotiate, arrange viewings, and get you moved in quickly.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="https://wa.me/393313251961?text=Just%20paid%20for%20Property%20Finding!" class="cta-primary">
+                    Message Us on WhatsApp
+                </a>
+                <a href="/" class="cta-secondary">
+                    Back to Homepage
+                </a>
+            </div>
+
+            <div class="confirmation-box">
+                <p>
+                    <strong>📧 Confirmation Email Sent</strong><br>
+                    Check your inbox for your reference number and full search details. Add hello@boom-roma.com to your contacts so our updates don't land in spam.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
